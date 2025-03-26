@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme{
+    --color-theme-gray: #3F3F3F;
+    --color-theme-gray-light: #888888;
+    --color-theme-primary-blue: #478FC4;
+    --color-theme-dark-blue: #286FA4;
+}
+
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Onest-VariableFont_wght.woff2') format('woff2');
+}
+
+body {
+  font-family: 'Onest', sans-serif;
+  background-color: #f5f5f5;
+  position: relative
+}

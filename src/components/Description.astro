@@ -1,0 +1,136 @@
+---
+import SectionIndex from "./SectionIndex.astro";
+
+const DESCRIPTIONS = [
+    {
+        dataId : 1,
+        paragraphs: [
+        'We are a <strong class="text-theme-primary-blue">Full Stack development</strong> team specializing in creating robust and <strong class="text-theme-primary-blue">dynamic solutions</strong>',
+
+        'From <strong class="text-theme-primary-blue">e-commerce platforms</strong> to <strong class="text-theme-primary-blue">administrative dashboards</strong> and <strong class="text-theme-primary-blue">web applications</strong>. Our focus is on delivering exceptional <strong class="text-theme-primary-blue">user experiences</strong>, strong <strong class="text-theme-primary-blue">optimized performance</strong>, and <strong class="text-theme-primary-blue">lightning-fast </strong>responsiveness.',
+
+        'We transform ideas into scalable, efficient, and <strong class="text-theme-primary-blue">impactful digital products</strong>.'
+        ]
+        
+    }
+    ,
+    {
+        dataId : 2,
+        paragraphs: [
+            'We provide <strong class = "text-theme-primary-blue">end-to-end web development services</strong>, covering everything from page design using Figma to meticulous documentation.',
+
+            'Our process emphasizes <strong class = "text-theme-primary-blue">close collaboration with clients</strong>, incorporating their <strong class = "text-theme-primary-blue">feedback</strong> at every stage through regular <strong class = "text-theme-primary-blue">updates and progress meetings.</strong> ',
+
+            'With a focus on <strong class = "text-theme-primary-blue">professionalism and precision</strong>, we deliver tailored solutions that exceed expectations.'
+        ]
+        
+    }
+]
+---
+
+<SectionIndex>
+    
+        <!-- no me convence el min-h-720px -->
+        
+        <article class="max-w-md prose">
+        <h2 class="inline-block mb-28">
+            <span class="text-theme-gray-light">/</span>
+            <span class="text-theme-gray">tech-stack</span>
+        </h2>
+        
+        <div class="button-container flex justify-start gap-3 relative">
+            <div class="slider absolute h-5 w-5 rounded-full bg-theme-primary-blue transition-all duration-300 ease-in-out"></div>
+            <button data-id="1" class="button-description-changer rounded-full size-5 bg-transparent hover:bg-theme-dark-blue/20 transition-colors relative z-10" data-active="true">
+            </button>
+            <button data-id="2" class="button-description-changer rounded-full size-5 bg-transparent hover:bg-theme-dark-blue/20 transition-colors relative z-10">
+            </button>
+        </div>
+        {
+            DESCRIPTIONS.map((description)=>(
+                <div p-data-id={`description-${description.dataId}`} class={`${description.dataId == 2 ? 'hidden' : ''}`}>
+                    {
+                        description.paragraphs?.map((paragraph)=>(
+                            <p>
+                                <span set:html={paragraph} />
+                            </p>
+                        ))
+                    }
+                </div>
+            ))
+        }
+        
+       </article>
+   
+</SectionIndex>
+
+
+
+<script>
+    let buttons = document.querySelectorAll('.button-description-changer')
+    let slider = document.querySelector('.slider')
+    let currentButton = '1'
+    
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute("data-id")
+            const event = new CustomEvent('change-description', {detail:{id}})
+            document.dispatchEvent(event)
+        })
+    })
+    
+    document.addEventListener('change-description', (event: Event) => {
+        const customEvent = event as CustomEvent<{id:string}>
+        const id = customEvent.detail.id
+        
+        if (currentButton == id) {
+            return
+        }
+        
+        // Mover el slider
+        if (id === '2') {
+            slider?.classList.add('move-to-second')
+        } else {
+            slider?.classList.remove('move-to-second')
+        }
+        
+        // Actualizar estados de los botones
+        if (currentButton) {
+            document.querySelector(`[p-data-id='description-${currentButton}']`)?.classList.add('hidden')
+            document.querySelector(`[data-id='${currentButton}']`)?.setAttribute('data-active', 'false')
+        }
+
+        currentButton = id
+        document.querySelector(`[p-data-id='description-${currentButton}']`)?.classList.remove('hidden')
+        document.querySelector(`[data-id='${currentButton}']`)?.setAttribute('data-active', 'true')
+    })
+
+   
+</script>
+
+<style>
+    li{
+        list-style: none;
+    }
+
+    .button-container {
+        --button-size: 1.25rem;
+        --gap: 0.75rem;
+    }
+
+    .slider {
+        left: 0;
+        transform-origin: left center;
+    }
+
+    .slider.move-to-second {
+        transform: translateX(calc(var(--button-size) + var(--gap)));
+    }
+
+    .button-description-changer {
+        border: 2px solid var(--color-theme-gray-light);
+    }
+
+    .button-description-changer[data-active="true"] {
+        border-color: var(--color-theme-primary-blue);
+    }
+</style>
