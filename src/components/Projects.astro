@@ -1,0 +1,240 @@
+---
+import SectionIndex from "./SectionIndex.astro";
+import sendmeMockup from "../images/sendme-mockup.avif"
+import adminSendmeMockup from "../images/admin-sendme-mockup.avif"
+import { Image } from "astro:assets";
+
+const PROJECTS = [
+    {
+        id: 0,
+        title: 'sendme - App integrated with Amazon API',
+        description: 'Created from scratch, using React and Tailwind CSS, Integrated with a backend based on Node JS and SQLite',
+        mockup: sendmeMockup.src,
+        style: ''
+
+    },
+
+    {
+        id: 1,
+        title: 'admin sendme - Administration App',
+        description: 'Order management app, turso database implementation. created using Node JS and SQlite',
+        mockup: adminSendmeMockup.src,
+        style: 'hidden'
+
+    },
+    
+]
+---
+
+<SectionIndex>
+    
+    <div class="w-full h-full flex flex-col justify-center items-center">
+        {
+            PROJECTS.map((project)=>(
+                <>
+                    
+                        <div project-info-id={project.id} class="prose max-w-md" class:list={project.style}>
+                            <h2 class="inline-block mb-20">
+                                <span class="text-theme-gray-light">/</span>
+                                <span class="text-theme-gray">projects</span>
+                            </h2>
+                    
+                            <h3>
+                                {project.title}
+                            </h3>
+                    
+                            <div>
+                                {project.description}
+                            </div>
+                    
+                        </div>
+                        <div class="flex flex-col w-4xl items-center relative min-h-80 max-h-80 " project-info-id={project.id} class:list={project.style}>
+                            <div class="flex" >
+                                <picture class="z-10">
+                                    {
+                                        PROJECTS[PROJECTS.indexOf(project)-1]?(
+                                        <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].id} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 left-0" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt="Screenshot of sendme, a project created by devian.">
+                                        ):(
+                                            ""
+                                        )
+                                    }
+                                </picture>
+
+                                <picture mockup-container-id = {project.id} class="mockup-container z-20 h-72 mt-9 rounded-xl overflow-hidden relative flex justify-center items-center">
+                                    <img option-mockup-id={`${project.id}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt="Screenshot of sendme, a project created by devian.">
+                                    <div class="circle-deco z-20 bg-black/85 absolute rounded-full invisible opacity-0">
+                                        
+                                    </div>
+                                </picture>
+                            
+                                <picture class="z-10 h-72">
+                                    {
+                                        PROJECTS[PROJECTS.indexOf(project)+1]?(<img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)+1]?.id} class="page-mockup-aside absolute page-mockup right-0 h-72 w-auto mt-9 hover:" src={PROJECTS[PROJECTS.indexOf(project)+1]?.mockup} alt="Screenshot of sendme, a project created by devian.">)
+                                        :
+                                        ("")
+                                    }
+                                </picture>
+                            </div>
+
+                            {/* <!-- <strong class="self-end mt-11 font-normal text-theme-primary-blue underline underline-offset-8">
+                                all projects
+                            </strong> --> */}
+                        </div>
+                    
+                    
+                </>
+            ))
+        }
+    </div>
+    
+</SectionIndex>
+
+
+<script>
+    //seleccionar todas las opciones
+    const mockupsOptions = document.querySelectorAll('.page-mockup')
+    
+    let selectedMockup = '0'
+
+    //crear un custom event para capturar el id del mockup clickeado
+    mockupsOptions.forEach((mockup)=>{
+        mockup.addEventListener('click', ()=>{
+            const mockupId = mockup.getAttribute('option-mockup-id')
+            console.log(mockupId)
+            const event = new CustomEvent('change-project', {detail : {mockupId}})
+            document.dispatchEvent(event)
+        })
+    })
+    
+    //usar la id para cambiar los estilos, esconder o mostrar informacion
+    document.addEventListener('change-project', (event:Event)=>{
+        const customEvent = event as CustomEvent<{mockupId:string}>
+        const mockupId = customEvent.detail.mockupId
+
+        if (selectedMockup == mockupId){
+            console.log('hola')
+            return
+        } 
+
+        let projects = document.querySelectorAll(`[project-info-id = '${selectedMockup}']`)
+
+        projects.forEach((project)=>{
+            project.classList.add('hidden')
+        })
+        
+
+        selectedMockup = mockupId
+        
+        projects = document.querySelectorAll(`[project-info-id = '${selectedMockup}']`)
+
+        projects.forEach((project)=>{
+            project.classList.remove('hidden')
+        })
+    })
+
+    // Manejar la animación del círculo
+
+        const mainMockups = document.querySelectorAll('.principal-mockup')
+
+        mainMockups.forEach((mainMockup)=>{
+            mainMockup.addEventListener('mouseenter', () => {
+            console.log('verguilla')
+            const circleAnimations = document.querySelectorAll('.circle-deco')
+
+            circleAnimations.forEach((circleAnimation) => {
+                circleAnimation?.classList.remove('invisible', 'opacity-0')
+                circleAnimation?.classList.add('mockup-more-info')
+            })
+
+            mainMockup.addEventListener('mouseleave', ()=>{
+            
+                circleAnimations.forEach((circleAnimation)=>{
+                    const handleTransitionEnd = () => {
+                
+                circleAnimation?.classList.add('invisible')
+                circleAnimation?.removeEventListener('transitionend', handleTransitionEnd)
+            }
+            
+            circleAnimation?.addEventListener('transitionend', handleTransitionEnd)
+            circleAnimation?.classList.remove('mockup-more-info')
+            circleAnimation?.classList.add('opacity-0')
+            })
+                })
+            
+        })
+        })
+        
+    
+        // document.querySelector('.principal-mockup')?.addEventListener('mouseenter', () => {
+        //     console.log('verguilla')
+        //     const circleAnimation = document.querySelector('.circle-deco')
+        //     circleAnimation?.classList.remove('invisible', 'opacity-0')
+        //     circleAnimation?.classList.add('mockup-more-info')
+        // })
+        
+        // document.querySelector('.principal-mockup')?.addEventListener('mouseleave', () => {
+        //     const circleAnimation = document.querySelector('.circle-deco')
+        //     const handleTransitionEnd = () => {
+                
+        //         circleAnimation?.classList.add('invisible')
+        //         circleAnimation?.removeEventListener('transitionend', handleTransitionEnd)
+        //     }
+            
+        //     circleAnimation?.addEventListener('transitionend', handleTransitionEnd)
+        //     circleAnimation?.classList.remove('mockup-more-info')
+        //     circleAnimation?.classList.add('opacity-0')
+        // })
+    
+</script>
+
+<style>
+    .mockup-container{
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .principal-mockup{
+        transition: all 0.4s ease-in-out;
+        filter: drop-shadow(0px 0px 0.5px #000000);
+    }
+
+    .principal-mockup:hover {
+        filter: drop-shadow(0px 0px 0.5px #000000) blur(4px);
+        transform: scale(1.05);
+    }
+
+    .page-mockup{
+        background: url(image.png);
+        border-radius: 10px;
+        aspect-ratio: 495/288;
+    }
+
+    .page-mockup-aside{
+        transform: scale(0.6);
+        opacity: 0.2;
+        filter: blur(1px);
+        border-radius: 20px;
+        border: 1px solid rgba(0, 0, 0, 1);
+    }
+
+    .page-mockup-aside:hover{
+        transform: scale(0.65);
+        transition: transform 0.1s ease-in-out;
+    }
+
+    .circle-deco {
+        position: absolute;
+        transform: scale(0);
+        width: 20px;
+        height: 20px;
+        transition: all 0.4s ease-in-out;
+        pointer-events: none;
+        will-change: transform, opacity;
+    }
+
+    .mockup-more-info {
+        transform: scale(30);
+        opacity: 0.95;
+    }
+</style>

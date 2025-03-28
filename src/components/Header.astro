@@ -1,10 +1,47 @@
 ---
 import Logotype from '@icons/logotype.astro'
+import LogoShape from '@icons/shape-logo.astro'
 ---
 
-<header class="absolute">
-    <div class="max-w-10/12 ml-24 mt-20 absolute">
+<header class="fixed ml-24 mt-20 h-12 w-full">
+    
+    <div class="logotype w-full h-full transition-all duration-200 transform">
         <Logotype/>
     </div>
+
+    <div class="logotype-shape absolute transition-all duration-200 transform opacity-0 top-0 left-0 size-10">
+        <LogoShape/>
+    </div>
 </header>
+
+<script>
+    //capturamos el tama;o del viewport para usarlo como variable en el animation-range del header
+    const viewportHeight = window.innerHeight;
+    document.documentElement.style.setProperty('--viewport-height', `${viewportHeight}`)
+
+    var logotype = document.querySelector('.logotype')
+    var LogoShape = document.querySelector('.logotype-shape')
+
+    window.addEventListener('scroll', ()=>{
+        if (window.scrollY > viewportHeight*0.5){
+            // Primer logo se desvanece y sube
+            logotype?.classList.add('opacity-0', '-translate-y-4')
+            logotype?.classList.remove('opacity-100', 'translate-y-0')
+            
+            // Segundo logo aparece y sube desde abajo
+            LogoShape?.classList.remove('opacity-0', 'translate-y-4')
+            LogoShape?.classList.add('opacity-100', 'translate-y-0')
+        }
+        else{
+            // Primer logo aparece
+            logotype?.classList.remove('opacity-0', '-translate-y-4')
+            logotype?.classList.add('opacity-100', 'translate-y-0')
+            
+            // Segundo logo se desvanece y baja
+            LogoShape?.classList.add('opacity-0', 'translate-y-4')
+            LogoShape?.classList.remove('opacity-100', 'translate-y-0')
+        }
+    })
+</script>
+
 
