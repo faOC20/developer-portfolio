@@ -5,21 +5,35 @@ import adminSendmeMockup from "../images/admin-sendme-mockup.avif"
 import { Image } from "astro:assets";
 
 const PROJECTS = [
+    
+
     {
         id: 0,
-        title: 'sendme - App integrated with Amazon API',
-        description: 'Created from scratch, using React and Tailwind CSS, Integrated with a backend based on Node JS and SQLite',
-        mockup: sendmeMockup.src,
-        style: ''
+        title: 'admin sendme - Administration App',
+        description: 'Order management app, turso database implementation. created using Node JS and SQlite',
+        mockup: adminSendmeMockup.src,
+        teckStack: ['node.js', 'express.js', 'sqlite', 'turso DB', 'react.js'],
+        style: 'hidden',
 
     },
 
     {
         id: 1,
+        title: 'sendme - App integrated with Amazon API',
+        description: 'Created from scratch, using React and Tailwind CSS, Integrated with a backend based on Node JS and SQLite',
+        mockup: sendmeMockup.src,
+        style: '',
+        teckStack: ['javascript', 'react.js', 'tailwind.css', 'node.js', 'sqlite']
+
+    },
+    
+    {
+        id: 2,
         title: 'admin sendme - Administration App',
         description: 'Order management app, turso database implementation. created using Node JS and SQlite',
         mockup: adminSendmeMockup.src,
-        style: 'hidden'
+        style: 'hidden',
+        teckStack: ['node.js', 'express.js', 'sqlite', 'turso DB', 'react.js']
 
     },
     
@@ -48,12 +62,12 @@ const PROJECTS = [
                             </div>
                     
                         </div>
-                        <div class="flex flex-col w-4xl items-center relative min-h-80 max-h-80 " project-info-id={project.id} class:list={project.style}>
+                        <div class="flex flex-col w-4xl items-center relative min-h-80 max-h-80" project-info-id={project.id} class:list={project.style}>
                             <div class="flex" >
                                 <picture class="z-10">
                                     {
                                         PROJECTS[PROJECTS.indexOf(project)-1]?(
-                                        <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].id} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 left-0" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt="Screenshot of sendme, a project created by devian.">
+                                        <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].id} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 left-0" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
                                         ):(
                                             ""
                                         )
@@ -61,10 +75,44 @@ const PROJECTS = [
                                 </picture>
 
                                 <picture mockup-container-id = {project.id} class="mockup-container z-20 h-72 mt-9 rounded-xl overflow-hidden relative flex justify-center items-center">
-                                    <img option-mockup-id={`${project.id}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt="Screenshot of sendme, a project created by devian.">
-                                    <div class="circle-deco z-20 bg-black/85 absolute rounded-full invisible opacity-0">
+                                    <img current-mockup-id = {project.id} option-mockup-id={`${project.id}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
+                                    <section class="absolute size-full flex">
+                                        <div option-circle={project.id} class="size-full inset-0 circle-deco z-20 bg-black/85 absolute rounded-full invisible opacity-0 flex justify-center  self-center place-self-center">
                                         
-                                    </div>
+                                        </div>
+
+                                       
+                                        <article more-info-id = {project.id} class="z-30 absolute size-full pointer-events-none flex flex-col pl-5 pt-5 pr-5 text-white invisible opacity-0">
+                                            <h3 class="text-md">
+                                                {project.title}
+                                            </h3>
+                                            <p class="text-sm mt-2 text-md font-extralight">
+                                                {project.description}
+                                            </p>
+                                            <h4 class='mt-4'>
+                                                Tools used
+                                            </h4>
+                                            <div class="grid grid-cols-2 pr-5">
+                                                <ul class=" mt-2 text-md grid grid-cols-2 font-extralight">
+                                                    {project.teckStack.map((tech)=>(
+                                                        <li>{tech}</li>
+                                                    ))}
+                                            </ul>
+
+                                            <div class="size-full flex flex-col gap-4 items-end text-theme-gray">
+                                                <button class="bg-white px-3 py-1 rounded-lg">
+                                                    open site
+                                                </button>
+                                                <button class="bg-white px-3 py-1 rounded-lg">
+                                                    more info
+                                                </button>
+                                            </div>
+                                            
+                                            </div>
+                                        </article>
+                                        
+                                        
+                                    </section>
                                 </picture>
                             
                                 <picture class="z-10 h-72">
@@ -91,100 +139,92 @@ const PROJECTS = [
 
 
 <script>
-    //seleccionar todas las opciones
+
     const mockupsOptions = document.querySelectorAll('.page-mockup')
     
-    let selectedMockup = '0'
+    let selectedMockup = '1'
 
-    //crear un custom event para capturar el id del mockup clickeado
     mockupsOptions.forEach((mockup)=>{
+        const mockupId = mockup.getAttribute('option-mockup-id')
+        
         mockup.addEventListener('click', ()=>{
-            const mockupId = mockup.getAttribute('option-mockup-id')
-            console.log(mockupId)
-            const event = new CustomEvent('change-project', {detail : {mockupId}})
-            document.dispatchEvent(event)
-        })
-    })
-    
-    //usar la id para cambiar los estilos, esconder o mostrar informacion
-    document.addEventListener('change-project', (event:Event)=>{
-        const customEvent = event as CustomEvent<{mockupId:string}>
-        const mockupId = customEvent.detail.mockupId
+            if (selectedMockup == mockupId){
+                return
+            }
 
-        if (selectedMockup == mockupId){
-            console.log('hola')
-            return
-        } 
-
-        let projects = document.querySelectorAll(`[project-info-id = '${selectedMockup}']`)
-
-        projects.forEach((project)=>{
-            project.classList.add('hidden')
-        })
+            if (mockupId){
+                let projects = document.querySelectorAll(`[project-info-id = '${selectedMockup}']`)
+                projects.forEach((project)=>{
+                project.classList.add('hidden')
+                selectedMockup = mockupId
         
+                projects = document.querySelectorAll(`[project-info-id = '${selectedMockup}']`)
 
-        selectedMockup = mockupId
-        
-        projects = document.querySelectorAll(`[project-info-id = '${selectedMockup}']`)
-
-        projects.forEach((project)=>{
-            project.classList.remove('hidden')
-        })
-    })
-
-    // Manejar la animación del círculo
-
-        const mainMockups = document.querySelectorAll('.principal-mockup')
-
-        mainMockups.forEach((mainMockup)=>{
-            mainMockup.addEventListener('mouseenter', () => {
-            console.log('verguilla')
-            const circleAnimations = document.querySelectorAll('.circle-deco')
-
-            circleAnimations.forEach((circleAnimation) => {
-                circleAnimation?.classList.remove('invisible', 'opacity-0')
-                circleAnimation?.classList.add('mockup-more-info')
+                projects.forEach((project)=>{
+                    project.classList.remove('hidden')
             })
-
-            mainMockup.addEventListener('mouseleave', ()=>{
-            
-                circleAnimations.forEach((circleAnimation)=>{
-                    const handleTransitionEnd = () => {
-                
-                circleAnimation?.classList.add('invisible')
-                circleAnimation?.removeEventListener('transitionend', handleTransitionEnd)
+            })
             }
             
-            circleAnimation?.addEventListener('transitionend', handleTransitionEnd)
-            circleAnimation?.classList.remove('mockup-more-info')
-            circleAnimation?.classList.add('opacity-0')
-            })
-                })
-            
+
+                    
         })
-        })
-        
+    })
+
     
-        // document.querySelector('.principal-mockup')?.addEventListener('mouseenter', () => {
-        //     console.log('verguilla')
-        //     const circleAnimation = document.querySelector('.circle-deco')
-        //     circleAnimation?.classList.remove('invisible', 'opacity-0')
-        //     circleAnimation?.classList.add('mockup-more-info')
-        // })
+
+    // Manejar la animación del círculo
+    const mainMockups = document.querySelectorAll('.principal-mockup')
+
+
+    mainMockups.forEach((mockup) => {
+        const mockupId = mockup.getAttribute('option-mockup-id')
+        const circleAnimation = document.querySelector(`[option-circle = '${mockupId}']`)
+        const moreInfoOnHover = document.querySelector(`[more-info-id = '${mockupId}']`)
+        if (!mockupId || !circleAnimation) return
+
+        // Manejar mouseenter
+        mockup.addEventListener('mouseenter', () => {
+
+           
         
-        // document.querySelector('.principal-mockup')?.addEventListener('mouseleave', () => {
-        //     const circleAnimation = document.querySelector('.circle-deco')
-        //     const handleTransitionEnd = () => {
+            circleAnimation.classList.remove('invisible', 'opacity-0')
+            circleAnimation.classList.add('mockup-more-info')
+
+            
+            
+            moreInfoOnHover?.classList.remove('invisible', 'opacity-0')
+            moreInfoOnHover?.classList.add('more-info-on-hover')
+            
+            
+            
+          
+        })
+
+        // Manejar mouseleave
+        mockup.addEventListener('mouseleave', () => {
+            const handleTransitionEnd = () => {
+
                 
-        //         circleAnimation?.classList.add('invisible')
-        //         circleAnimation?.removeEventListener('transitionend', handleTransitionEnd)
-        //     }
+                
+                   
+                circleAnimation.classList.add('invisible')
+                circleAnimation.removeEventListener('transitionend', handleTransitionEnd)
+                moreInfoOnHover?.classList.add('invisible')
+                moreInfoOnHover?.removeEventListener('transitionend', handleTransitionEnd)
+                
+                
+            }
             
-        //     circleAnimation?.addEventListener('transitionend', handleTransitionEnd)
-        //     circleAnimation?.classList.remove('mockup-more-info')
-        //     circleAnimation?.classList.add('opacity-0')
-        // })
-    
+            circleAnimation.addEventListener('transitionend', handleTransitionEnd)
+            circleAnimation.classList.remove('mockup-more-info')
+            circleAnimation.classList.add('opacity-0')
+
+            moreInfoOnHover?.addEventListener('transitionend', handleTransitionEnd)
+            moreInfoOnHover?.classList.add('opacity-0')
+            moreInfoOnHover?.classList.remove('more-info-on-hover')
+        })
+    })
 </script>
 
 <style>
@@ -197,6 +237,7 @@ const PROJECTS = [
     .principal-mockup{
         transition: all 0.4s ease-in-out;
         filter: drop-shadow(0px 0px 0.5px #000000);
+        cursor: pointer;
     }
 
     .principal-mockup:hover {
@@ -236,5 +277,11 @@ const PROJECTS = [
     .mockup-more-info {
         transform: scale(30);
         opacity: 0.95;
+    }
+
+    .more-info-on-hover{
+        opacity: 1;
+        transition: all 1s ease-in-out;
+        will-change: opacity;
     }
 </style>
