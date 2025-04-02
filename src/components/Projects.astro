@@ -3,22 +3,12 @@ import SectionIndex from "./SectionIndex.astro";
 import sendmeMockup from "../images/sendme-mockup.avif"
 import adminSendmeMockup from "../images/admin-sendme-mockup.avif"
 import { Image } from "astro:assets";
+import OptionSelector from "./OptionSelector";
 
 const PROJECTS = [
     
-
     {
-        id: 0,
-        title: 'admin sendme - Administration App',
-        description: 'Order management app, turso database implementation. created using Node JS and SQlite',
-        mockup: adminSendmeMockup.src,
-        teckStack: ['node.js', 'express.js', 'sqlite', 'turso DB', 'react.js'],
-        style: 'hidden',
-
-    },
-
-    {
-        id: 1,
+        dataId: '0',
         title: 'sendme - App integrated with Amazon API',
         description: 'Created from scratch, using React and Tailwind CSS, Integrated with a backend based on Node JS and SQLite',
         mockup: sendmeMockup.src,
@@ -28,7 +18,22 @@ const PROJECTS = [
     },
     
     {
-        id: 2,
+        dataId: '1',
+        title: 'admin sendme - Administration App',
+        description: 'Order management app, turso database implementation. created using Node JS and SQlite',
+        mockup: adminSendmeMockup.src,
+        teckStack: ['node.js', 'express.js', 'sqlite', 'turso DB', 'react.js'],
+        style: 'hidden',
+
+    },
+    
+
+    
+
+    
+    
+    {
+        dataId: '2',
         title: 'admin sendme - Administration App',
         description: 'Order management app, turso database implementation. created using Node JS and SQlite',
         mockup: adminSendmeMockup.src,
@@ -43,15 +48,19 @@ const PROJECTS = [
 <SectionIndex>
     
     <div class="w-full h-full flex flex-col justify-center items-center">
+        <div class="prose w-md">
+            <h2 class="inline-block mb-20">
+                <span class="text-theme-gray-light">/</span>
+                <span class="text-theme-gray">projects</span>
+            </h2>
+        </div>
+        
         {
             PROJECTS.map((project)=>(
-                <>
+                <div data-id={`project-${project.dataId}`} class="w-full flex flex-col justify-center items-center" class:list={project.style}>
                     
-                        <div project-info-id={project.id} class="prose max-w-md" class:list={project.style}>
-                            <h2 class="inline-block mb-20">
-                                <span class="text-theme-gray-light">/</span>
-                                <span class="text-theme-gray">projects</span>
-                            </h2>
+                        <div  class="prose max-w-md">
+                            
                     
                             <h3>
                                 {project.title}
@@ -62,27 +71,31 @@ const PROJECTS = [
                             </div>
                     
                         </div>
-                        <div class="flex flex-col w-4xl items-center relative min-h-80 max-h-80" project-info-id={project.id} class:list={project.style}>
+                        <div class="flex flex-col w-4xl items-center relative min-h-80 max-h-80 mb-8" project-info-id={project.dataId}>
                             <div class="flex" >
+
+                                {/*Left Mockup*/}
                                 <picture class="z-10">
                                     {
                                         PROJECTS[PROJECTS.indexOf(project)-1]?(
-                                        <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].id} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 left-0" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
+                                        <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].dataId} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 left-0" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
                                         ):(
                                             ""
                                         )
                                     }
                                 </picture>
 
-                                <picture mockup-container-id = {project.id} class="mockup-container z-20 h-72 mt-9 rounded-xl overflow-hidden relative flex justify-center items-center">
-                                    <img current-mockup-id = {project.id} option-mockup-id={`${project.id}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
+
+                                {/*Main Mockup*/}
+                                <picture mockup-container-id = {project.dataId} class="mockup-container z-20 h-72 mt-9 rounded-xl overflow-hidden relative flex justify-center items-center">
+                                    <img current-mockup-id = {project.dataId} option-mockup-id={`${project.dataId}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
                                     <section class="absolute size-full flex">
-                                        <div option-circle={project.id} class="size-full inset-0 circle-deco z-20 bg-black/85 absolute rounded-full invisible opacity-0 flex justify-center  self-center place-self-center">
+                                        <div option-circle={project.dataId} class="size-full inset-0 circle-deco z-20 bg-black/85 absolute rounded-full invisible opacity-0 flex justify-center  self-center place-self-center">
                                         
                                         </div>
 
                                        
-                                        <article more-info-id = {project.id} class="z-30 absolute size-full pointer-events-none flex flex-col pl-5 pt-5 pr-5 text-white invisible opacity-0">
+                                        <article more-info-id = {project.dataId} class="z-30 absolute size-full pointer-events-none flex flex-col pl-5 pt-5 pr-5 text-white invisible opacity-0">
                                             <h3 class="text-md">
                                                 {project.title}
                                             </h3>
@@ -114,14 +127,18 @@ const PROJECTS = [
                                         
                                     </section>
                                 </picture>
-                            
+
+
+                                {/*Right mockup*/}
                                 <picture class="z-10 h-72">
                                     {
-                                        PROJECTS[PROJECTS.indexOf(project)+1]?(<img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)+1]?.id} class="page-mockup-aside absolute page-mockup right-0 h-72 w-auto mt-9 hover:" src={PROJECTS[PROJECTS.indexOf(project)+1]?.mockup} alt="Screenshot of sendme, a project created by devian.">)
+                                        PROJECTS[PROJECTS.indexOf(project)+1]?(<img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)+1]?.dataId} class="page-mockup-aside absolute page-mockup right-0 h-72 w-auto mt-9 hover:" src={PROJECTS[PROJECTS.indexOf(project)+1]?.mockup} alt="Screenshot of sendme, a project created by devian.">)
                                         :
                                         ("")
                                     }
                                 </picture>
+
+                                
                             </div>
 
                             {/* <!-- <strong class="self-end mt-11 font-normal text-theme-primary-blue underline underline-offset-8">
@@ -130,19 +147,26 @@ const PROJECTS = [
                         </div>
                     
                     
-                </>
+                </div>
+
             ))
         }
+        
+        <OptionSelector options={PROJECTS} toManage={"project"} client:only/>
     </div>
+
+     
     
 </SectionIndex>
 
 
 <script>
+import { handleClick } from "src/utils/handleClickButton"
+
 
     const mockupsOptions = document.querySelectorAll('.page-mockup')
     
-    let selectedMockup = '1'
+    let selectedMockup = '0'
 
     mockupsOptions.forEach((mockup)=>{
         const mockupId = mockup.getAttribute('option-mockup-id')
@@ -153,17 +177,12 @@ const PROJECTS = [
             }
 
             if (mockupId){
-                let projects = document.querySelectorAll(`[project-info-id = '${selectedMockup}']`)
-                projects.forEach((project)=>{
-                project.classList.add('hidden')
-                selectedMockup = mockupId
-        
-                projects = document.querySelectorAll(`[project-info-id = '${selectedMockup}']`)
 
-                projects.forEach((project)=>{
-                    project.classList.remove('hidden')
-            })
-            })
+                document.querySelector(`[data-id='project-${selectedMockup}']`)?.classList.add('hidden')
+                handleClick(mockupId, 'project')
+                selectedMockup = mockupId
+                document.querySelector(`[data-id='project-${selectedMockup}']`)?.classList.remove('hidden')
+
             }
             
 
@@ -243,12 +262,6 @@ const PROJECTS = [
     .principal-mockup:hover {
         filter: drop-shadow(0px 0px 0.5px #000000) blur(4px);
         transform: scale(1.05);
-    }
-
-    .page-mockup{
-        background: url(image.png);
-        border-radius: 10px;
-        aspect-ratio: 495/288;
     }
 
     .page-mockup-aside{

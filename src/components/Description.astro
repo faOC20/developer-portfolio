@@ -1,10 +1,10 @@
 ---
-import InfoChangerButton from "./InfoChangerButton.astro";
-import SectionIndex from "./SectionIndex.astro";
+import OptionSelector from "@components/OptionSelector.jsx";
+import SectionIndex from "@components/SectionIndex.astro";
 
 const DESCRIPTIONS = [
     {
-        dataId : 1,
+        dataId : '0',
         paragraphs: [
         'We are a <strong class="text-theme-primary-blue">Full Stack development</strong> team specializing in creating robust and <strong class="text-theme-primary-blue">dynamic solutions</strong>',
 
@@ -13,12 +13,14 @@ const DESCRIPTIONS = [
         'We transform ideas into scalable, efficient, and <strong class="text-theme-primary-blue">impactful digital products</strong>.',
 
         'We transform ideas into scalable, efficient, and <strong class="text-theme-primary-blue">impactful digital products</strong>.',
-        ]
+        ],
+        style: ' '
+        
         
     }
     ,
     {
-        dataId : 2,
+        dataId : '1',
         paragraphs: [
             'We provide <strong class = "text-theme-primary-blue">end-to-end web development services</strong>, covering everything from page design using Figma to meticulous documentation.',
 
@@ -26,11 +28,15 @@ const DESCRIPTIONS = [
 
             'With a focus on <strong class = "text-theme-primary-blue">professionalism and precision</strong>, we deliver tailored solutions that exceed expectations.',
 
-        ]
+        ],
+        style: 'hidden'
         
-    }
+    },
+
+    
 ]
 ---
+
 
 <SectionIndex>
     
@@ -42,10 +48,10 @@ const DESCRIPTIONS = [
             <span class="text-theme-gray">tech-stack</span>
         </h2>
         
-        <InfoChangerButton loops={DESCRIPTIONS.length}/>
+        <OptionSelector options={DESCRIPTIONS} toManage={"description"}  client:only/>
         {
             DESCRIPTIONS.map((description)=>(
-                <div p-data-id={`description-${description.dataId}`} class={`min-h-[400px] max-h-[400px] mt-2 overflow-auto ${description.dataId == 2 ? 'hidden' : ''}`}>
+                <div data-id={`description-${description.dataId}`} class:list={`min-h-[400px] max-h-[400px] mt-2 overflow-auto ${description.style}`}>
                     {
                         description.paragraphs?.map((paragraph)=>(
                             <p>
