@@ -71,7 +71,7 @@ const PROJECTS = [
                             </div>
                     
                         </div>
-                        <div class="flex flex-col w-4xl items-center relative min-h-80 max-h-80 mb-8" project-info-id={project.dataId}>
+                        <div class="flex flex-col w-4xl items-center relative min-h-80 max-h-80 mb-8">
                             <div class="flex" >
 
                                 {/*Left Mockup*/}
@@ -87,15 +87,15 @@ const PROJECTS = [
 
 
                                 {/*Main Mockup*/}
-                                <picture mockup-container-id = {project.dataId} class="mockup-container z-20 h-72 mt-9 rounded-xl overflow-hidden relative flex justify-center items-center">
-                                    <img current-mockup-id = {project.dataId} option-mockup-id={`${project.dataId}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
+                                <picture class="mockup-container z-20 h-72 mt-9 rounded-xl overflow-hidden relative flex justify-center items-center">
+                                    <img option-mockup-id={`${project.dataId}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
                                     <section class="absolute size-full flex">
-                                        <div option-circle={project.dataId} class="size-full inset-0 circle-deco z-20 bg-black/85 absolute rounded-full invisible opacity-0 flex justify-center  self-center place-self-center">
+                                        <div option-circle={`option-circle-${project.dataId}`} class="size-full inset-0 z-20 bg-black/85 absolute pointer-events-none flex justify-center  self-center place-self-center invisible">
                                         
                                         </div>
 
                                        
-                                        <article more-info-id = {project.dataId} class="z-30 absolute size-full pointer-events-none flex flex-col pl-5 pt-5 pr-5 text-white invisible opacity-0">
+                                        <article more-info-id = {`more-info-${project.dataId}`} class="z-30 absolute size-full pointer-events-none flex flex-col pl-5 pt-5 pr-5 text-white invisible">
                                             <h3 class="text-md">
                                                 {project.title}
                                             </h3>
@@ -198,8 +198,8 @@ import { handleClick } from "src/utils/handleClickButton"
 
     mainMockups.forEach((mockup) => {
         const mockupId = mockup.getAttribute('option-mockup-id')
-        const circleAnimation = document.querySelector(`[option-circle = '${mockupId}']`)
-        const moreInfoOnHover = document.querySelector(`[more-info-id = '${mockupId}']`)
+        const circleAnimation = document.querySelector(`[option-circle = 'option-circle-${mockupId}']`)
+        const moreInfoOnHover = document.querySelector(`[more-info-id = 'more-info-${mockupId}']`)
         if (!mockupId || !circleAnimation) return
 
         // Manejar mouseenter
@@ -207,13 +207,12 @@ import { handleClick } from "src/utils/handleClickButton"
 
            
         
-            circleAnimation.classList.remove('invisible', 'opacity-0')
-            circleAnimation.classList.add('mockup-more-info')
+            circleAnimation.classList.remove('invisible')
 
             
             
-            moreInfoOnHover?.classList.remove('invisible', 'opacity-0')
-            moreInfoOnHover?.classList.add('more-info-on-hover')
+            moreInfoOnHover?.classList.remove('invisible')
+     
             
             
             
@@ -222,26 +221,26 @@ import { handleClick } from "src/utils/handleClickButton"
 
         // Manejar mouseleave
         mockup.addEventListener('mouseleave', () => {
-            const handleTransitionEnd = () => {
+            // const handleTransitionEnd = () => {
 
                 
                 
                    
-                circleAnimation.classList.add('invisible')
-                circleAnimation.removeEventListener('transitionend', handleTransitionEnd)
-                moreInfoOnHover?.classList.add('invisible')
-                moreInfoOnHover?.removeEventListener('transitionend', handleTransitionEnd)
+            //     circleAnimation.classList.add('invisible')
+            //     circleAnimation.removeEventListener('transitionend', handleTransitionEnd)
+            //     moreInfoOnHover?.classList.add('invisible')
+            //     moreInfoOnHover?.removeEventListener('transitionend', handleTransitionEnd)
                 
                 
-            }
+            // }
             
-            circleAnimation.addEventListener('transitionend', handleTransitionEnd)
-            circleAnimation.classList.remove('mockup-more-info')
-            circleAnimation.classList.add('opacity-0')
+            
+            circleAnimation.classList.add('invisible')
+       
 
-            moreInfoOnHover?.addEventListener('transitionend', handleTransitionEnd)
-            moreInfoOnHover?.classList.add('opacity-0')
-            moreInfoOnHover?.classList.remove('more-info-on-hover')
+           
+            moreInfoOnHover?.classList.add('invisible')
+           
         })
     })
 </script>
@@ -270,6 +269,7 @@ import { handleClick } from "src/utils/handleClickButton"
         filter: blur(1px);
         border-radius: 20px;
         border: 1px solid rgba(0, 0, 0, 1);
+        filter: brightness(70%);
     }
 
     .page-mockup-aside:hover{
@@ -277,24 +277,5 @@ import { handleClick } from "src/utils/handleClickButton"
         transition: transform 0.1s ease-in-out;
     }
 
-    .circle-deco {
-        position: absolute;
-        transform: scale(0);
-        width: 20px;
-        height: 20px;
-        transition: all 0.4s ease-in-out;
-        pointer-events: none;
-        will-change: transform, opacity;
-    }
-
-    .mockup-more-info {
-        transform: scale(30);
-        opacity: 0.95;
-    }
-
-    .more-info-on-hover{
-        opacity: 1;
-        transition: all 1s ease-in-out;
-        will-change: opacity;
-    }
+ 
 </style>
