@@ -1,5 +1,5 @@
 import { handleClick } from "src/utils/handleClickButton"
-import '../styles/stylesOptionSelector.css'
+import '@styles/stylesOptionSelector.css'
 
 const OptionSelector = ({options, toManage})=>{
 
