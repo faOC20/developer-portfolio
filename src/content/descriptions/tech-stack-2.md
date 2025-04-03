@@ -1,9 +1,9 @@
 ---
-dataId: 2
+dataId: '1'
+style: 'hidden'
 ---
+We provide <strong class = "text-theme-dark-blue">end-to-end web development services</strong>, covering everything from page design using Figma to meticulous documentation.
 
-We love technology and innovation
+Our process emphasizes <strong class = "text-theme-dark-blue">close collaboration with clients</strong>, incorporating their <strong class = "text-theme-dark-blue">feedback</strong> at every stage through regular <strong class = "text-theme-dark-blue">updates and progress meetings.</strong>
 
-From <strong class="text-theme-primary-blue">e-commerce platforms</strong> to <strong class="text-theme-primary-blue">administrative dashboards</strong> and <strong class="text-theme-primary-blue">web applications</strong>. Our focus is on delivering exceptional <strong class="text-theme-primary-blue">user experiences</strong>, strong <strong class="text-theme-primary-blue">optimized performance</strong>, and <strong class="text-theme-primary-blue">lightning-fast </strong>responsiveness.
-
-We transform ideas into scalable, efficient, and <strong class="text-theme-primary-blue">impactful digital products</strong>.
+With a focus on <strong class = "text-theme-dark-blue">professionalism and precision</strong>, we deliver tailored solutions that exceed expectations.
