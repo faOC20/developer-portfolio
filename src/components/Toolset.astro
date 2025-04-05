@@ -1,0 +1,34 @@
+---
+import SectionIndex from '@components/SectionIndex.astro';
+import SectionTitle from './SectionTitle.astro';
+import { TECHNOLOGIES } from '@constants/technologies';
+---
+<SectionIndex style="flex-col">
+    
+    <SectionTitle>Toolset</SectionTitle>
+    <div class="grid grid-cols-2 gap-7">
+        {
+            TECHNOLOGIES.map((tech) => (
+                <section class=" bg-gray-200/60 flex flex-col rounded aspect-square shadow-sm gap-3"> 
+                    <h3 class="pl-3 pt-2 text-theme-gray-medium font-bold">{tech.category.toUpperCase()}</h3>
+                   
+                    <ul  class="grid grid-cols-3 mx-auto my-auto gap-2 h-">
+                        {tech.techs.map((tech)=>(
+                            <li class="flex flex-col aspect-square size-20 items-center justify-center mb-3">
+                                <picture class="flex size-11 items-center justify-center">
+                                    <tech.icon/>
+                                </picture>
+                                <figcaption class="text-sm mt-2">
+                                    {tech.name}
+                                </figcaption>
+                            </li>
+                        ))}
+                    </ul>
+                    
+                </section>
+            ))
+        }
+    </div>
+
+</SectionIndex>
+
