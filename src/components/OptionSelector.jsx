@@ -10,7 +10,7 @@ const OptionSelector = ({options, toManage})=>{
             {
                 options.map((option)=>(
                     <button onClick={()=>{handleClick(option.dataId, toManage)}} key={`button-${toManage}-${option.dataId}`} data-id = {`button-${toManage}-${option.dataId}`}
-                    className={`button-description-changer rounded-full size-5  hover:bg-theme-dark-blue/20 transition-colors relative z-10 ${option.dataId == 0?'bg-theme-primary-blue':""}`}>
+                    className={`button-description-changer rounded-full size-5 bg-theme-gray-light/40  hover:bg-theme-dark-blue/20 shadow transition-colors relative z-10 ${option.dataId == 0?'bg-theme-primary-blue':""}`}>
                     </button>
                 ))
             }

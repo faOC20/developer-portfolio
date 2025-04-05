@@ -16,9 +16,9 @@
     transform: translateX(calc(var(--button-size) + var(--gap)));
 } */
 
-.button-description-changer {
-    border: 2px solid var(--color-theme-gray-light);
-}
+/* .button-description-changer {
+    border: 1.5px solid var(--color-theme-gray-light);
+} */
 
 /* .button-description-changer[data-active="true"] {
     border-color: var(--color-theme-primary-blue);
