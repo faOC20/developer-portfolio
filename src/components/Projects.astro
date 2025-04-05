@@ -4,6 +4,8 @@ import sendmeMockup from "@images/sendme-mockup.avif"
 import adminSendmeMockup from "@images/admin-sendme-mockup.avif"
 import { Image } from "astro:assets";
 import OptionSelector from "@components/OptionSelector";
+import SectionTitle from "@components/SectionTitle.astro";
+import VerticalLine from "@icons/vertical-line.astro";
 
 const PROJECTS = [
     
@@ -45,115 +47,116 @@ const PROJECTS = [
 ]
 ---
 
-<SectionIndex>
-    
-    <div class="w-full h-full flex flex-col justify-center items-center">
-        <div class="prose w-md">
-            <h2 class="inline-block mb-20">
-                <span class="text-theme-gray-light">/</span>
-                <span class="text-theme-gray">projects</span>
-            </h2>
-        </div>
+<SectionIndex style="flex-col">
+
+        <SectionTitle>projects</SectionTitle>
         
-        {
-            PROJECTS.map((project)=>(
-                <div data-id={`project-${project.dataId}`} class="w-full flex flex-col justify-center items-center" class:list={project.style}>
-                    
-                        <div  class="prose max-w-md">
+        <div class="flex relative">
+            <div>
+                {
+                    PROJECTS.map((project)=>(
+                        <div data-id={`project-${project.dataId}`} class="flex flex-col" class:list={project.style}>
                             
-                    
-                            <h3>
-                                {project.title}
-                            </h3>
-                    
-                            <div>
-                                {project.description}
-                            </div>
-                    
-                        </div>
-                        <div class="flex flex-col w-4xl items-center relative min-h-80 max-h-80 mb-8">
-                            <div class="flex" >
-
-                                {/*Left Mockup*/}
-                                <picture class="z-10">
-                                    {
-                                        PROJECTS[PROJECTS.indexOf(project)-1]?(
-                                        <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].dataId} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 left-0" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
-                                        ):(
-                                            ""
-                                        )
-                                    }
-                                </picture>
-
-
-                                {/*Main Mockup*/}
-                                <picture class="mockup-container z-20 h-72 mt-9 rounded-xl overflow-hidden relative flex justify-center items-center">
-                                    <img option-mockup-id={`${project.dataId}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
-                                    <section class="absolute size-full flex">
-                                        <div option-circle={`option-circle-${project.dataId}`} class="size-full inset-0 z-20 bg-black/85 absolute pointer-events-none flex justify-center  self-center place-self-center invisible">
-                                        
-                                        </div>
-
-                                       
-                                        <article more-info-id = {`more-info-${project.dataId}`} class="z-30 absolute size-full pointer-events-none flex flex-col pl-5 pt-5 pr-5 text-white invisible">
-                                            <h3 class="text-md">
-                                                {project.title}
-                                            </h3>
-                                            <p class="text-sm mt-2 text-md font-extralight">
-                                                {project.description}
-                                            </p>
-                                            <h4 class='mt-4'>
-                                                Tools used
-                                            </h4>
-                                            <div class="grid grid-cols-2 pr-5">
-                                                <ul class=" mt-2 text-md grid grid-cols-2 font-extralight">
-                                                    {project.teckStack.map((tech)=>(
-                                                        <li>{tech}</li>
-                                                    ))}
-                                            </ul>
-
-                                            <div class="size-full flex flex-col gap-4 items-end text-theme-gray">
-                                                <button class="bg-white px-3 py-1 rounded-lg">
-                                                    open site
-                                                </button>
-                                                <button class="bg-white px-3 py-1 rounded-lg">
-                                                    more info
-                                                </button>
-                                            </div>
-                                            
-                                            </div>
-                                        </article>
-                                        
-                                        
-                                    </section>
-                                </picture>
-
-
-                                {/*Right mockup*/}
-                                <picture class="z-10 h-72">
-                                    {
-                                        PROJECTS[PROJECTS.indexOf(project)+1]?(<img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)+1]?.dataId} class="page-mockup-aside absolute page-mockup right-0 h-72 w-auto mt-9 hover:" src={PROJECTS[PROJECTS.indexOf(project)+1]?.mockup} alt="Screenshot of sendme, a project created by devian.">)
-                                        :
-                                        ("")
-                                    }
-                                </picture>
-
-                                
-                            </div>
-
-                            {/* <!-- <strong class="self-end mt-11 font-normal text-theme-primary-blue underline underline-offset-8">
-                                all projects
-                            </strong> --> */}
-                        </div>
-                    
-                    
-                </div>
-
-            ))
-        }
+                                <div  class="prose">
+                                    
+                            
+                                    <h3 class="text-theme-gray">
+                                        {project.title}
+                                    </h3>
+                            
+                                    <div>
+                                        {project.description}
+                                    </div>
+                            
+                                </div>
+                                <div class="justify-center items-center relative min-h-80 max-h-80 mb-8">
+                                    <div class="flex" >
         
-        <OptionSelector options={PROJECTS} toManage={"project"} client:only/>
-    </div>
+                                        {/*Left Mockup*/}
+                                        <picture class="z-10">
+                                            {
+                                                PROJECTS[PROJECTS.indexOf(project)-1]?(
+                                                <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].dataId} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 -left-40" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
+                                                ):(
+                                                    ""
+                                                )
+                                            }
+                                        </picture>
+        
+        
+                                        {/*Main Mockup*/}
+                                        <picture class="mockup-container z-20 h-72 mt-9 rounded-xl overflow-hidden relative flex justify-center items-center">
+                                            <img option-mockup-id={`${project.dataId}`} class="principal-mockup z-10 page-mockup size-full" src={project.mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
+                                            <section class="absolute size-full flex">
+                                                <div option-circle={`option-circle-${project.dataId}`} class="size-full inset-0 z-20 bg-black/85 absolute pointer-events-none flex justify-center  self-center place-self-center invisible">
+                                                
+                                                </div>
+        
+                                               
+                                                <article more-info-id = {`more-info-${project.dataId}`} class="z-30 absolute size-full pointer-events-none flex flex-col pl-5 pt-5 pr-5 text-white invisible">
+                                                    <h3 class="text-md">
+                                                        {project.title}
+                                                    </h3>
+                                                    <p class="text-sm mt-2 text-md font-extralight">
+                                                        {project.description}
+                                                    </p>
+                                                    <h4 class='mt-4'>
+                                                        Tools used
+                                                    </h4>
+                                                    <div class="grid grid-cols-2 pr-5">
+                                                        <ul class=" mt-2 text-md grid grid-cols-2 font-extralight">
+                                                            {project.teckStack.map((tech)=>(
+                                                                <li>{tech}</li>
+                                                            ))}
+                                                    </ul>
+        
+                                                    <div class="size-full flex flex-col gap-4 items-end text-theme-gray">
+                                                        <button class="bg-white px-3 py-1 rounded-lg">
+                                                            open site
+                                                        </button>
+                                                        <button class="bg-white px-3 py-1 rounded-lg">
+                                                            more info
+                                                        </button>
+                                                    </div>
+                                                    
+                                                    </div>
+                                                </article>
+                                                
+                                                
+                                            </section>
+                                        </picture>
+        
+        
+                                        {/*Right mockup*/}
+                                        <picture class="z-10 h-72">
+                                            {
+                                                PROJECTS[PROJECTS.indexOf(project)+1]?(<img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)+1]?.dataId} class="page-mockup-aside absolute page-mockup -right-36 h-72 w-auto mt-9 hover:" src={PROJECTS[PROJECTS.indexOf(project)+1]?.mockup} alt="Screenshot of sendme, a project created by devian.">)
+                                                :
+                                                ("")
+                                            }
+                                        </picture>
+        
+                                        
+                                    </div>
+        
+                                    {/* <!-- <strong class="self-end mt-11 font-normal text-theme-primary-blue underline underline-offset-8">
+                                        all projects
+                                    </strong> --> */}
+                                </div>
+                            
+                            
+                        </div>
+        
+                    ))
+                }
+                
+                <div class="flex justify-center">
+                    <OptionSelector options={PROJECTS} toManage={"project"} client:only/>
+                </div>
+            </div>
+            
+        </div>
+    
 
      
     
@@ -165,23 +168,17 @@ import { handleClick } from "src/utils/handleClickButton"
 
 
     const mockupsOptions = document.querySelectorAll('.page-mockup')
-    
-    let selectedMockup = '0'
 
     mockupsOptions.forEach((mockup)=>{
         const mockupId = mockup.getAttribute('option-mockup-id')
         
         mockup.addEventListener('click', ()=>{
-            if (selectedMockup == mockupId){
-                return
-            }
-
+        
             if (mockupId){
 
-                document.querySelector(`[data-id='project-${selectedMockup}']`)?.classList.add('hidden')
+                
                 handleClick(mockupId, 'project')
-                selectedMockup = mockupId
-                document.querySelector(`[data-id='project-${selectedMockup}']`)?.classList.remove('hidden')
+                
 
             }
             

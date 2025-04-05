@@ -1,3 +1,12 @@
-<section class="h-screen flex justify-center items-center gap-9 relative  text-theme-gray">
+---
+interface Props {
+    style: string
+}
+
+const {style} = Astro.props
+---
+
+
+<section class={`h-screen flex  justify-center relative w-lg text-theme-gray  ${style}`}>
     <slot/>
 </section>
