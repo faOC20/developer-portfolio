@@ -1,9 +1,10 @@
 ---
 import OptionSelector from "@components/OptionSelector.jsx";
 import SectionIndex from "@components/SectionIndex.astro";
-import { getCollection, render } from "astro:content";
-import { date, optional } from "astro:schema";
+import { getCollection } from "astro:content";
 import {collectionSorter} from '@utils/collectionSorter'
+import SectionTitle from "@components/SectionTitle.astro";
+import VerticalLine from "@icons/vertical-line.astro";
 
 const descriptions = await getCollection('descriptions')
 
@@ -12,14 +13,11 @@ const options = collectionSorter(descriptions)
 ---
 
 
-<SectionIndex>
+<SectionIndex style="">
     
         
-        <article class="max-w-md prose flex flex-col justify-center">
-        <h2 class="inline-block mb-20">
-            <span class="text-theme-gray-light">/</span>
-            <span class="text-theme-gray">tech-stack</span>
-        </h2>
+        <article class=" prose flex flex-col justify-center">
+            <SectionTitle>tech-stack</SectionTitle>
         
         <OptionSelector options={options} toManage={"description"}  client:only/>
         {
@@ -43,6 +41,8 @@ const options = collectionSorter(descriptions)
         }
         
        </article>
+
+       
    
 </SectionIndex>
 

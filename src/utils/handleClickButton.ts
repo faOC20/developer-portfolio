@@ -25,34 +25,3 @@ export const handleClick = (id: string, toManage: string) => {
     document.querySelector(`[data-id='button-${toManage}-${currentButtons[toManage]}']`)?.classList.add('bg-theme-primary-blue');
 };
 
-// let currentButton = '0'
-
-// export const handleClick = (id: string, toManage: string)=>{
-
-
-//     // let slider = document.querySelector('.slider')
-
-//     if (currentButton === id) {
-//         return
-//     }
-    
-//     // Mover el slider
-//     // if (id === '1') {
-//     //     slider?.classList.add('move-to-second')
-//     // } else {
-//     //     slider?.classList.remove('move-to-second')
-//     // }
-    
-//     // Actualizar estados de los botones
-//     if (currentButton) {
-//         document.querySelector(`[data-id='${toManage}-${currentButton}']`)?.classList.add('hidden')
-//         document.querySelector(`[data-id='button-${toManage}-${currentButton}']`)?.classList.remove('bg-theme-primary-blue')
-       
-//     }
-
-//     currentButton = id
-//     document.querySelector(`[data-id='${toManage}-${currentButton}']`)?.classList.remove('hidden')
-//     document.querySelector(`[data-id='button-${toManage}-${currentButton}']`)?.classList.add('bg-theme-primary-blue')
-    
-
-// }
