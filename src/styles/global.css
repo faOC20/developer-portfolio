@@ -6,7 +6,7 @@
     --color-theme-gray-light: #888888;
     --color-theme-primary-blue: #478FC4;
     --color-theme-dark-blue: #286FA4;
-    --color-theme-light: #f5f5f5;
+    --color-theme-light: #CCCCCC;
     --color-theme-gray-medium: #4e4e4e;
 }
 
@@ -21,4 +21,10 @@ body {
   font-family: 'Onest', sans-serif;
   background-color: #f5f5f5;
   position: relative;
+}
+
+@media (prefers-color-scheme: dark){
+  body{
+    background-color: #1B1B1B;
+  }
 }

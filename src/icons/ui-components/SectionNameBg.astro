@@ -1,0 +1,11 @@
+---
+interface Props {
+    style: string    
+}
+
+const{style} = Astro.props
+---
+
+<span class="absolute self-center  text-9xl font-black text-[#eaeaea8e]" class:list={style}>
+    <slot/>
+</span> 

@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import OptionSelector from "@components/OptionSelector";
 import SectionTitle from "@components/SectionTitle.astro";
 import VerticalLine from "@icons/vertical-line.astro";
+import SectionNameBg from "@icons/ui-components/SectionNameBg.astro";
 
 const PROJECTS = [
     
@@ -60,23 +61,23 @@ const PROJECTS = [
                                 <div  class="prose">
                                     
                             
-                                    <h3 class="text-theme-gray">
+                                    <h3 class="text-theme-gray dark:text-theme-primary-blue ">
                                         {project.title}
                                     </h3>
                             
-                                    <div>
+                                    <div class="dark:text-theme-light">
                                         {project.description}
                                     </div>
                             
                                 </div>
                                 <div class="justify-center items-center relative min-h-80 max-h-80 mb-8">
-                                    <div class="flex" >
+                                    <div class="flex justify-center" >
         
                                         {/*Left Mockup*/}
                                         <picture class="z-10">
                                             {
                                                 PROJECTS[PROJECTS.indexOf(project)-1]?(
-                                                <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].dataId} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 -left-40" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
+                                                <img option-mockup-id = {PROJECTS[PROJECTS.indexOf(project)-1].dataId} class="page-mockup-aside absolute page-mockup h-72 w-auto mt-9 -left-36" src={PROJECTS[PROJECTS.indexOf(project)-1].mockup} alt={`Screenshot of ${project.title}, a project created by devian.`}>
                                                 ):(
                                                     ""
                                                 )
@@ -162,11 +163,42 @@ const PROJECTS = [
             </div>
             
         </div>
-    
+        
 
+        {/*<SectionNameBg style="-left-130">
+            /PRO-<br/>JECTS
+        </SectionNameBg>*/}
+
+        {/*
+            <div class="absolute h-full -left-130 flex flex-col gap-4 overflow-hidden justify-center">
+            <span class="text-7xl font-black text-[#eaeaea]">
+            /PROJECTS
+            </span>
+            <span class="text-7xl font-black text-[#eaeaea]">
+            /PROJECTS
+            </span>
+            <span class="text-7xl font-black text-[#eaeaea]">
+            /PROJECTS
+            </span>
+            <span class="text-7xl font-black text-[#eaeaea]">
+            /PROJECTS
+            </span>
+            <span class="text-7xl font-black text-[#eaeaea]">
+            /PROJECTS
+            </span>
+            <span class="text-7xl font-black text-[#eaeaea]">
+            /PROJECTS
+            </span>
+        </div>
+            
+            */}
+
+        
      
     
 </SectionIndex>
+
+
 
 
 <script>
@@ -295,3 +327,7 @@ import { handleClick } from "src/utils/handleClickButton"
   }
  
 </style>
+
+{/* <span class="absolute self-center -left-120 h-52 w-auto">
+            <ProjectsCarved/>
+        </span> */}
