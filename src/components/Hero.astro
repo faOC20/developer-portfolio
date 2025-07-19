@@ -5,6 +5,7 @@ import Linkdin from '@icons/linkdin.astro';
 import Mail from '@icons/mail.astro';
 import VerticalLine from '@icons/vertical-line.astro';
 import SectionIndex from '@components/SectionIndex.astro';
+import DevianLogo from '@icons/devianLogo.svg' 
 
 const SOCIALS = [
     {
@@ -35,7 +36,7 @@ const SOCIALS = [
             {
                 SOCIALS.map((option) => (
                     <li>
-                        <a href={option.link} class="flex size-10 p-1">
+                        <a href={option.link} class="flex size-10 p-1 text-theme-primary-blue dark:text-[#CCCCCC]">
                             <option.icon/>
                             
                         </a>
@@ -45,7 +46,7 @@ const SOCIALS = [
         </ul>
     </div>
     <picture class="size-44">
-        <Logo/>
+        <DevianLogo/>
     </picture>
 
     

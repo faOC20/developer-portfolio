@@ -4,7 +4,8 @@ import SectionIndex from "@components/SectionIndex.astro";
 import { getCollection } from "astro:content";
 import {collectionSorter} from '@utils/collectionSorter'
 import SectionTitle from "@components/SectionTitle.astro";
-import VerticalLine from "@icons/vertical-line.astro";
+import SectionNameBg from "@icons/ui-components/SectionNameBg.astro";
+
 
 const descriptions = await getCollection('descriptions')
 
@@ -13,11 +14,13 @@ const options = collectionSorter(descriptions)
 ---
 
 
-<SectionIndex style="mt-42">
+<SectionIndex style="">
     
         
-        <article class=" prose flex flex-col justify-center">
+        <article class="prose flex flex-col relative justify-center">
             <SectionTitle>tech-stack</SectionTitle>
+            
+
         
         <OptionSelector options={options} toManage={"description"}  client:only/>
         {
@@ -27,10 +30,10 @@ const options = collectionSorter(descriptions)
                 const { Content } = await description.render();
 
                 return(
-                    <div data-id={`description-${dataId}`} class:list={`min-h-[300px] max-h-[400px] overflow-auto  ${style}`}>
+                    <div data-id={`description-${dataId}`} class:list={`min-h-[300px] max-h-[320px] overflow-auto  ${style}`}>
                         
 
-                        <div class="">
+                        <div class="dark:text-theme-light">
                            <Content/> 
                         </div>
 
@@ -42,7 +45,12 @@ const options = collectionSorter(descriptions)
         
        </article>
 
+       <!-- <SectionNameBg style="-right-130">
+            /TECH<br/>STACK
+       </SectionNameBg> -->
+
        
    
 </SectionIndex>
+
 
