@@ -1,9 +1,5 @@
 ---
 import SectionIndex from "@components/SectionIndex.astro";
-import sendmeMockup from "@images/sendme/sendme-mockup.avif"
-import adminSendmeMockup from "@images/adminSendme/adminSendme-mockup.avif"
-import syncroMockup from '@images/syncro/syncro-mockup.avif'
-import syncroVideo from '/videos/Syncro-Mockup-Video.webm'
 import {Mockups} from '@components/Mockups'
 
 export const PROJECTS = [
@@ -12,10 +8,10 @@ export const PROJECTS = [
         dataId: '1',
         title: 'syncro - Inventory App',
         description: 'Financed Sales & Inventory App. created using Python and PostgreSQL',
-        mockup: syncroMockup.src,
+        mockup: '/images/syncro/syncro-mockup.avif',
         teckStack: ['node.js', 'express.js', 'sqlite', 'turso DB', 'react.js'],
         style: 'col-span-4 row-span-2',
-        video: syncroVideo,
+        video: '/videos/Syncro-Mockup-video.webm',
         options: [
             {
                 
@@ -44,7 +40,7 @@ export const PROJECTS = [
         dataId: '2',
         title: 'sendme - App integrated with Amazon API',
         description: 'Created from scratch, using React and Tailwind CSS, Integrated with a backend based on Node JS and SQLite',
-        mockup: sendmeMockup.src,
+        mockup: '/images/sendme/sendme-mockup.avif',
         info: '/project/syncro',
         style: 'col-span-2',
         teckStack: ['javascript', 'react.js', 'tailwind.css', 'node.js', 'sqlite'],
@@ -75,9 +71,9 @@ export const PROJECTS = [
     {
         dataId: '3',
         title: 'admin sendme - Administration App',
-        info: '/project/syncro',
+        info: '/project/admin-sendme',
         description: 'Order management app, turso database implementation. created using Node JS and SQlite',
-        mockup: adminSendmeMockup.src,
+        mockup: '/images/adminSendme/adminSendme-mockup.avif',
         style: 'col-span-2',
         teckStack: ['node.js', 'express.js', 'sqlite', 'turso DB', 'react.js'],
         options: [

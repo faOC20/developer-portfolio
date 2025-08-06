@@ -2,7 +2,7 @@
 dataId: '1'
 title: 'Admin Sendme - Management dashboard'
 description: 'Created from scratch, using React and Tailwind CSS, Integrated with a backend based on Node JS and SQLite'
-mockup: '@images/sendme/sendme-mockup.avif'
+mockup: '/images/sendme/sendme-mockup.avif'
 shortCuts: 
     Frontend: 
         - React 
@@ -17,8 +17,8 @@ shortCuts:
         - Vercel
         - Turso SQLite
     Preview: 
-        - ['Dashboard-page', '@images/adminSendme/sendme-homepage.avif']
-        - ['Order-page', '@images/adminSendme/admin-order.avif']
+        - ['Dashboard-page', '/images/adminSendme/sendme-homepage.avif']
+        - ['Order-page', '/images/adminSendme/admin-order.avif']
     Resources: 
         - [Project details, '/project/admin-sendme']
 ---
@@ -110,13 +110,13 @@ This application is structured around a set of functional pages, each designed t
 <div id="Dashboard-page">
 </div>
 
-![Sendme web, Dashboard page screenshot](@images/adminSendme/admin-dashboard.avif)
+![Sendme web, Dashboard page screenshot](/images/adminSendme/admin-dashboard.avif)
 > Admin sendme - Dashboard page.
 
 <div id="Order-page">
 </div>
 
-![Sendme web, Order page screenshot](@images/adminSendme/admin-order.avif)
+![Sendme web, Order page screenshot](/images/adminSendme/admin-order.avif)
 > Sendme web - Order page.
 
 

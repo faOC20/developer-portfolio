@@ -2,7 +2,7 @@
 dataId: '1'
 title: 'Syncro - Inventory App'
 description: 'Financed Sales & Inventory App. created using Python and PostgreSQL'
-mockup: '@images/syncro/syncro-mockup.avif'
+mockup: '/images/syncro/syncro-mockup.avif'
 shortCuts: 
     Frontend: 
         - Astro 
@@ -18,11 +18,11 @@ shortCuts:
         - Docker
         - PgAdmin
     Preview: 
-        - ['Home-page', '@images/syncro/syncro-screenshot.avif']
-        - ['Sale-option', '@images/syncro/syncro-sale.avif']
-        - ['Operation-page', '@images/syncro/syncro-operation.avif']
-        - ['Summary-page', '@images/syncro/syncro-summary.avif']
-        - ['Cashout-page', '@images/syncro/cashout.avif']
+        - ['Home-page', '/images/syncro/syncro-screenshot.avif']
+        - ['Sale-option', '/images/syncro/syncro-sale.avif']
+        - ['Operation-page', '/images/syncro/syncro-operation.avif']
+        - ['Summary-page', '/images/syncro/syncro-summary.avif']
+        - ['Cashout-page', '/images/syncro/cashout.avif']
     Resources: 
         - [Repository, 'https://github.com/faOC20/syncro-frontend']
         - [Landing page, '/project/syncro']
@@ -126,13 +126,13 @@ This application is structured around a set of functional pages, each designed t
 <div id="Home-page">
 </div>
 
-![Syncro app, main page screenshot](@images/syncro/syncro-screenshot.avif)
+![Syncro app, main page screenshot](/images/syncro/syncro-screenshot.avif)
 > Syncro app - Main page.
 
 <div id="Sale-option">
 </div>
 
-![Syncro app, main page, sale view screenshot](@images/syncro/syncro-sale.avif)
+![Syncro app, main page, sale view screenshot](/images/syncro/syncro-sale.avif)
 > Syncro app - Operation page, sale view.
 
 The homepage functions as a dynamic control center, providing real-time access to ongoing operations, customer notifications, and order creation tools. When a new order is initiated through the form, the administrator can define the type of operation via the "Cashea" button, which dynamically toggles based on the order context. For standard cash transactions, the button remains disabled, preserving the fixed nature of the payment. However, when handling Cashea orders, the button becomes active, allowing the admin to designate and adjust the operation type according to the client's financing preferences., the system transitions smoothly into a product selection interface, where items are added for purchase. This process culminates in the generation of the corresponding invoice, completing the transaction with precision and clarity.
@@ -140,7 +140,7 @@ The homepage functions as a dynamic control center, providing real-time access t
 <div id="Operation-page">
 </div>
 
-![Syncro app, operation page screenshot](@images/syncro/syncro-operation.avif)
+![Syncro app, operation page screenshot](/images/syncro/syncro-operation.avif)
 > Syncro app - Operation page.
 
 The Operation page provides an in-depth overview of the selected order, clearly outlining the purchaser's identity, total amount, available payment methods, and a detailed summary of the included products. Its most distinctive feature is the administrator's ability to dynamically update the status of installment payments as the client progressively settles the debt, ensuring accurate financial tracking throughout the transaction lifecycle.
@@ -148,7 +148,7 @@ The Operation page provides an in-depth overview of the selected order, clearly 
 <div id="Summary-page">
 </div>
 
-![Syncro app, summary page screenshot](@images/syncro/syncro-summary.avif)
+![Syncro app, summary page screenshot](/images/syncro/syncro-summary.avif)
 > Syncro app - Summary page.
 
 The Summary page delivers a comprehensive annual report detailing all processed orders. It presents a tabular view of every installment, along with its current status, offering a clear trace of client activity—including completed payments, delays, and outstanding dues. This centralized overview empowers the administrator with full control over operational records and client behavior. Additionally, the system provides a downloadable .xls.
@@ -156,7 +156,7 @@ The Summary page delivers a comprehensive annual report detailing all processed 
 <div id="Cashout-page">
 </div>
 
-![Syncro app, cash closing page screenshot](@images/syncro/syncro-cashout.avif)
+![Syncro app, cash closing page screenshot](/images/syncro/syncro-cashout.avif)
 > Syncro app - Cash closing page.
 
 The Cash Closing page provides administrators with a detailed breakdown of the total funds processed during the day, categorized by each payment method used. It displays all recorded transactions filtered by the selected date, ensuring clear traceability of daily activity. Complementing this view, a donut-style chart visually represents the earnings in U.S. dollars, calculated using the exchange rate corresponding to the chosen date. By default, the system synchronizes with the current calendar day, offering a streamlined experience for daily financial reconciliation.

@@ -2,7 +2,7 @@
 dataId: '1'
 title: 'Sendme - Online sales page integrated with Amazon API'
 description: 'Created from scratch, using React and Tailwind CSS, Integrated with a backend based on Node JS and SQLite'
-mockup: '@images/sendme/sendme-mockup.avif'
+mockup: '/images/sendme/sendme-mockup.avif'
 shortCuts: 
     Frontend: 
         - React 
@@ -17,12 +17,12 @@ shortCuts:
         - Vercel
         - Turso SQLite
     Preview: 
-        - ['Home-page', '@images/sendme/sendme-homepage.avif']
-        - ['Search-page', '@images/sendme/sendme-search.avif']
-        - ['Product-page', '@images/sendme/sendme-product.avif']
-        - ['Cart-page', '@images/sendme/sendme-cart.avif']
-        - ['Purchase-page', '@images/sendme/sendme-purchase.avif']
-        - ['Profile-page', '@images/sendme/sendme-profile.avif']
+        - ['Home-page', '/images/sendme/sendme-homepage.avif']
+        - ['Search-page', '/images/sendme/sendme-search.avif']
+        - ['Product-page', '/images/sendme/sendme-product.avif']
+        - ['Cart-page', '/images/sendme/sendme-cart.avif']
+        - ['Purchase-page', '/images/sendme/sendme-purchase.avif']
+        - ['Profile-page', '/images/sendme/sendme-profile.avif']
     Resources: 
         - [Repository, 'https://github.com/faOC20/sendme-front-react']
         - [Website, 'https://sendme-rho.vercel.app/']
@@ -112,13 +112,13 @@ This application is structured around a set of functional pages, each designed t
 <div id="Home-page">
 </div>
 
-![Sendme web, main page screenshot](@images/sendme/sendme-homepage.avif)
+![Sendme web, main page screenshot](/images/sendme/sendme-homepage.avif)
 > Sendme web - Main page.
 
 <div id="Search-page">
 </div>
 
-![Sendme web, search page screenshot](@images/sendme/sendme-search.avif)
+![Sendme web, search page screenshot](/images/sendme/sendme-search.avif)
 > Sendme web - Search page.
 
 
@@ -126,7 +126,7 @@ This application is structured around a set of functional pages, each designed t
 <div id="Product-page">
 </div>
 
-![Sendme web, product page screenshot](@images/sendme/sendme-product.avif)
+![Sendme web, product page screenshot](/images/sendme/sendme-product.avif)
 > Sendme web - Product page.
 
 
@@ -134,19 +134,19 @@ This application is structured around a set of functional pages, each designed t
 <div id="Cart-page">
 </div>
 
-![Sendme web, cart page screenshot](@images/sendme/sendme-cart.avif)
+![Sendme web, cart page screenshot](/images/sendme/sendme-cart.avif)
 > Sendme web - Cart page.
 
 <div id="Purchase-page">
 </div>
 
-![Sendme web, Purchase page screenshot](@images/sendme/sendme-purchase.avif)
+![Sendme web, Purchase page screenshot](/images/sendme/sendme-purchase.avif)
 > Sendme web - Purchase page.
 
 <div id="Profile-page">
 </div>
 
-![Sendme web, Profile page screenshot](@images/sendme/sendme-profile.avif)
+![Sendme web, Profile page screenshot](/images/sendme/sendme-profile.avif)
 > Sendme web - Profile page.
 
 

@@ -20,9 +20,6 @@
       "@styles/*": [
         "src/styles/*"
       ],
-      "@images/*": [
-        "src/images/*"
-      ],
       "@constants/*": [
         "src/constants/*"
       ],
