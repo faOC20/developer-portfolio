@@ -1,0 +1,82 @@
+---
+import Github from '@icons/github.svg';
+import Linkdin from '@icons/linkdin.astro';
+import Mail from '@icons/mail.astro';
+import SectionIndex from './SectionIndex.astro';
+import SocialsIcon from '@icons/socials.svg'
+
+const SOCIALS = [
+    {
+        name: 'Github',
+        link: 'https://github.com/faOC20',
+        icon: Github,
+        user: 'faOC20'
+
+    },
+    {
+        name: 'Linkdin',
+        link: 'https://www.linkedin.com/in/fabianortizdev?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+        icon: Linkdin,
+        user: 'Fabian Ortiz'
+    },
+    
+] as const;
+
+// {
+//         name: 'Mail',
+//         link: , 
+//         icon: Mail,
+//         user: 'Email'
+//     }
+---
+
+<div id="socials">
+    <SectionIndex style='relative py-10'>
+
+        <div class="absolute -bottom-30 -right-30   w-[300px] h-[300px]  bg-[radial-gradient(circle,_rgba(71,143,196,0.25)_0%,_rgba(71,143,196,0)_70%,_rgba(71,143,196,0)_100%)] rounded-full"></div>
+
+
+        <ul class="flex flex-col h-full  justify-between items-center relative">
+            {
+                SOCIALS.map((option) => (
+                    <a target="_blank" href={option.link} class="w-full flex gap-2 bg-[#2A2A2A] hover:bg-theme-gray hover:rotate-4  transition-all rounded-2xl">
+                        <picture class="flex size-12 p-2 bg-theme-gray/90 m-2 rounded-xl text-theme-primary-blue dark:text-theme-light">
+                            <option.icon/>
+                        </picture>
+                        <span class="flex size-full items-center text-theme-light">
+                            {option.user}
+                        </span>
+                    </a>
+                ))
+            }
+
+            <button id="email-button" class="w-full flex gap-2 bg-[#2A2A2A] hover:bg-theme-gray hover:rotate-4 cursor-pointer  transition-all rounded-2xl">
+                <picture class="flex size-12 p-2 bg-theme-gray/90 m-2 rounded-xl text-theme-primary-blue dark:text-theme-light">
+                    <Mail/>
+                </picture>
+                <span class="flex size-full items-center text-theme-light">
+                    fabianortiz.dev
+                </span>
+            </button>
+        </ul>
+    </SectionIndex>
+</div>
+
+
+<script>
+    import { copyAlert } from '../alerts/copyAlert'
+  
+    function setupEmailButton() {
+      const emailButton = document.getElementById('email-button')
+      if (emailButton) {
+        emailButton.addEventListener('click', () => {
+          navigator.clipboard.writeText('fabianortiz.dev@gmail.com')
+          copyAlert()
+        })
+      }
+    }
+  
+    setupEmailButton()
+  
+    document.addEventListener('astro:after-swap', setupEmailButton)
+  </script>

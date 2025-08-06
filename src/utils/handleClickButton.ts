@@ -23,5 +23,7 @@ export const handleClick = (id: string, toManage: string) => {
 
     document.querySelector(`[data-id='${toManage}-${currentButtons[toManage]}']`)?.classList.remove('hidden');
     document.querySelector(`[data-id='button-${toManage}-${currentButtons[toManage]}']`)?.classList.add('bg-theme-primary-blue');
+
 };
+
 

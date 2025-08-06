@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from 'astro:content';
+import ProjectLayout from '@layouts/ProjectLayout.astro'
+import ProjectsNav from '@components/ProjectsNav.astro';
+import ProjectsSidebar from '@components/ProjectsSidebar.astro';
+import {slide} from 'astro:transitions'
+
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { id: project.slug },
+    props: { project }
+  }));
+}
+
+const {id} = Astro.params
+const { project } = Astro.props;
+const {data} = project
+const {dataId, title, description, mockup, shortCuts} = data
+
+const buttons: string[][] = shortCuts.Resources.filter((option)=>(option[0] != 'Project details'))
+
+const {Content} = await render(project)
+
+---
+
+<ProjectLayout>
+    <ProjectsNav shortCuts={shortCuts}/>
+    <main transition:animate='slide' id="project-main" class="flex flex-col gap-6">
+
+      <div class="flex gap-4">
+        {buttons.map(([name, link])=>(
+          
+            <a href={link} target="_blank" class="project-option cursor-pointer border border-theme-primary-blue transition-all ease-in-out text-sm hover:text-white hover:bg-theme-primary-blue text-theme-primary-blue rounded-full py-1 px-3">
+                {name}
+            </a>
+          
+          ))}
+      </div>
+      
+       <div class="prose prose-invert text-gray-400">
+            <Content/>
+       </div>
+    </main>
+
+    <ProjectsSidebar currentProject={id}/>
+</ProjectLayout>
+

@@ -1,0 +1,60 @@
+---
+import type {Shortcuts} from '@interfaces/projectsInterface' 
+interface Props{
+    shortCuts: Shortcuts
+}
+
+const {shortCuts} = Astro.props
+const data: [string, string[]][] = Object.entries(shortCuts)
+console.log(data)
+---
+
+<nav id="project-nav" class="text-sm relative">
+    <ul class="flex flex-col  gap-6 sticky top-50">
+        <li>
+          <a class="text-white font-bold" href="#introduction">Introduction</a>
+        </li>
+      
+        {
+            data.map(([key, value])=>(
+                value.length>1?(
+                <li class="flex flex-col gap-1">
+                    <a class="text-white font-bold" href={`#${key}`}>{key}</a>
+                    <ul class="flex flex-col gap-1 pl-5 border-l border-theme-gray-medium">
+                        {
+                            key==='Preview' || key === 'Resources'?(
+                                value.filter((option)=>(option[0]!=='Project details')).map(([toolKey, toolValue])=>{
+                                    if(key === 'Resources' && value.length > 0){
+                                       return(
+                                        <li>
+                                            <a href={`${toolValue}`}>{toolKey}</a>
+                                        </li>
+                                       )
+                                    }
+                                    
+                                    else{
+                                        return(
+                                            <li>
+                                                <a href={`#${toolKey}`}>{toolKey}</a>
+                                            </li>
+                                        )
+                                    }
+                                })
+                            ):(
+                                value.map((toolKey: string)=>(
+                                    <li>
+                                        <a href={`#${key}`}>{toolKey}</a>
+                                    </li>
+                                ))
+                            )
+                        }
+                    </ul>
+                </li>
+                ):(
+                    ""
+                )
+            ))
+        }
+      </ul>
+      
+</nav>

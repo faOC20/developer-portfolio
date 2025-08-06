@@ -1,7 +1,6 @@
 ---
 import '@styles/global.css'
-import Header from '@components/Header.astro'
-import Footer from '@components/Footer.astro'
+import ClientRouter from 'astro/components/ClientRouter.astro'
 ---
 
 <!doctype html>
@@ -9,21 +8,62 @@ import Footer from '@components/Footer.astro'
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Devian Solutions</title>
+		<title>Fabian Ortiz - Portolio</title>
+		<ClientRouter/>
 	</head>
 
 	
 	<body>
 		
-		<Header/>
-		<main class="flex items-center flex-col gap-20">
+		<!-- <Header/> -->
+		<main>
 			<slot />
 		</main>
-		<Footer/>
+		
 	</body>
 </html>
+
+<style is:global>
+	main{
+		padding: 3.8rem;
+		gap: 2rem;
+		min-height: 100vh;	
+		display: grid;
+		grid-template-areas: 
+		'toolset hero hero social experience'
+		'projects projects projects projects contact'
+		'projects projects projects projects contact'
+		;
+		grid-template-columns: 20rem 18rem 18rem 18rem auto;
+		grid-template-rows: 20rem 10rem 20rem;
+	}
+
+	#hero{
+		grid-area: hero;
+	}
+
+	#projects-container{
+		grid-area: projects;
+	}
+
+	#toolset{
+		grid-area: toolset;
+	}
+
+	#contact{
+		grid-area: contact;
+	}
+
+	#socials{
+		grid-area: social;
+	}
+
+	#experience{
+		grid-area: experience;
+	}
+</style>
 
 
 

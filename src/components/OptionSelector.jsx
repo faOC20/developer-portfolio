@@ -10,7 +10,7 @@ const OptionSelector = ({options, toManage})=>{
             {
                 options.map((option)=>(
                     <button onClick={()=>{handleClick(option.dataId, toManage)}} key={`button-${toManage}-${option.dataId}`} data-id = {`button-${toManage}-${option.dataId}`}
-                    className={`button-description-changer rounded-full size-5 bg-theme-gray-light/40  hover:bg-theme-dark-blue/20 shadow transition-colors relative z-10 ${option.dataId == 0?'bg-theme-primary-blue':""}`}>
+                    className={`button-description-changer rounded-full size-5 bg-theme-gray-light/40  hover:bg-theme-dark-blue/20 shadow transition-colors relative z-10 cursor-pointer ${option.dataId == 0?'bg-theme-primary-blue':""}`}>
                     </button>
                 ))
             }
@@ -63,31 +63,31 @@ export default OptionSelector
    
 </script> */}
 
-// <style>
-//     li{
-//         list-style: none;
-//     }
+{/* <style>
+    li{
+        list-style: none;
+    }
 
-//     .button-container {
-//         --button-size: 1.25rem;
-//         --gap: 0.75rem;
-//     }
+    .button-container {
+        --button-size: 1.25rem;
+        --gap: 0.75rem;
+    }
 
-//     .slider {
-//         left: 0;
-//         transform-origin: left center;
-//     }
+    .slider {
+        left: 0;
+        transform-origin: left center;
+    }
 
-//     .slider.move-to-second {
-//         transform: translateX(calc(var(--button-size) + var(--gap)));
-//     }
+    .slider.move-to-second {
+        transform: translateX(calc(var(--button-size) + var(--gap)));
+    }
 
-//     .button-description-changer {
-//         border: 2px solid var(--color-theme-gray-light);
-//     }
+    .button-description-changer {
+        border: 2px solid var(--color-theme-gray-light);
+    }
 
-//     .button-description-changer[data-active="true"] {
-//         border-color: var(--color-theme-primary-blue);
-//     }
+    .button-description-changer[data-active="true"] {
+        border-color: var(--color-theme-primary-blue);
+    }
 
-// </style>
+</style> */}

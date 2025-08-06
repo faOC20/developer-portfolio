@@ -26,7 +26,7 @@ interface Technology {
 
 export const TECHNOLOGIES: Technology[] = [
     {
-        category: 'frontend',
+        category: 'Frontend',
         techs: [
             {
                 name: 'React',
@@ -62,7 +62,7 @@ export const TECHNOLOGIES: Technology[] = [
         ]
     },
     {
-        category: 'backend',
+        category: 'Backend',
         techs: [
             {
                 name: 'Node',
@@ -88,7 +88,7 @@ export const TECHNOLOGIES: Technology[] = [
         ]
     },
     {
-        category: 'services',
+        category: 'Services',
         techs: [
             {
                 name: 'Firebase',

@@ -1,25 +1,65 @@
 ---
 import SectionIndex from "./SectionIndex.astro";
-import SectionTitle from "./SectionTitle.astro";
+import ContactIcon from '@icons/contact.svg'
 
 
 ---
 
-<SectionIndex style="flex-col justify-start h-[624px]">
-    <SectionTitle>
-        contact-us
-    </SectionTitle>
+<div id="contact">
+    <SectionIndex style="flex flex-col items-center gap-8 py-10">
+        <picture class="text-theme-primary-blue bg-black/15 rounded-lg p-1.5 size-13">
+            <ContactIcon/>
+        </picture>
+        <b class="text-theme-light text-lg">Let's work together</b>
+        <div class="prose">
 
-    <div class="prose">
-        <h3 class=" text-theme-gray dark:text-theme-gray-light">
-            Let us show you how our work can make a difference!
-        </h3>
+           
+
+            <h3 class=" text-theme-gray dark:text-theme-gray-light">
+                Let me show you how my work can make a difference!
+            </h3>
+        
+            <form id="contact-form" class="grid gap-y-10 gap-x-8 text-theme-gray-light">
+
+                <div class="w-full col-span-2">
+                    <input autocomplete="off" required name="subject" type="text" class="border-b w-full justify-self-start border-b-theme-primary-blue" type="text" placeholder="enter subject">
+                </div>
+            
+                <div class="w-full col-span-2 h-18 overflow-y-auto">
+                    <textarea autocomplete="off" name="message" required class="resize-none border-b py-2 w-full border-b-theme-primary-blue" placeholder="let’s talk!"/>
+                </div>
+                <div class="col-span-2 flex justify-end">
+                    <button class="bg-theme-primary-blue hover:bg-theme-dark-blue hover:rotate-4 transition-all cursor-pointer text-[#ededed] px-3 rounded-lg py-1" type="submit">Let's go!</button>
+                </div>
+            </form>
+        </div>
+        
+
+    </SectionIndex>
+</div>
+
+<style>
+    textarea{
+        field-sizing: content;
+    }
+</style>
+
+<script>
     
-        <form class="grid grid-cols-2 gap-y-10 text-theme-gray-light">
-            <input type="text" class="border-b w-fit py-2 border-b-theme-primary-blue" type="text" placeholder="enter your name">
-            <input type="email" class="border-b w-fit justify-self-end border-b-theme-primary-blue" type="text" placeholder="enter your email address">
-            <input type=""  class="border-b py-2 col-span-2 border-b-theme-primary-blue" type="text" placeholder="let’s talk!">
-        </form>
-    </div>
 
-</SectionIndex>
+    const initContactForm = ()=>{
+        const contactForm = document.getElementById('contact-form')
+        contactForm?.addEventListener('submit', (e)=>{
+            console.log('entre aqui')
+            e.preventDefault()
+            const info = Object.fromEntries(new FormData(e.target as HTMLFormElement))
+            window.open(`https://mail.google.com/mail/?view=cm&to=fabianortiz.dev@gmail.com&su=${info['subject']}&body=${info['message']}`, "_blank");
+        })   
+    }
+
+    initContactForm()
+
+    document.addEventListener('astro:after-swap', initContactForm)
+
+</script>
+

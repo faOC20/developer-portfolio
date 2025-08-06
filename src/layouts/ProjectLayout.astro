@@ -1,0 +1,74 @@
+---
+import '@styles/global.css'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import { ClientRouter} from 'astro:transitions'
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Fabian Ortiz - Portolio</title>
+		<ClientRouter/>
+	</head>
+
+	
+	<body>
+		<Header/>
+		<slot />
+		<!-- <Footer/> -->
+	</body>
+</html>
+
+
+<style is:global>
+    body{
+		min-height: 100vh;
+		padding-left: 17rem;
+		padding-right: 17rem;
+		padding-bottom: 5rem;
+		display: grid;
+		grid-template-areas: 
+		"header header header"
+		"nav main sidebar"
+		"footer footer footer"
+		;
+		grid-template-columns: 15rem 1fr 14rem;
+		grid-template-rows: auto 1fr 10rem;
+    }
+
+	#header{
+		grid-area: header;
+		margin-bottom: 9rem;
+	}
+
+	#project-nav{
+		grid-area: nav;
+		
+	}
+
+	#project-main{
+		grid-area: main;
+		padding-left: 7rem;
+		padding-right: 7rem;
+	}
+
+	#project-footer{
+		grid-area: footer;
+		
+	}
+
+	#sidebar{
+		grid-area: sidebar;	
+	}
+
+</style>
+
+
+
+
+

@@ -25,6 +25,9 @@
       ],
       "@constants/*": [
         "src/constants/*"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
       ]
     },
     "jsx": "react-jsx",

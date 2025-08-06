@@ -1,4 +1,4 @@
-/* li{
+li{
     list-style: none;
 }
 
@@ -14,12 +14,12 @@
 
 .slider.move-to-second {
     transform: translateX(calc(var(--button-size) + var(--gap)));
-} */
+}
 
-/* .button-description-changer {
+.button-description-changer {
     border: 1.5px solid var(--color-theme-gray-light);
-} */
+}
 
-/* .button-description-changer[data-active="true"] {
+.button-description-changer[data-active="true"] {
     border-color: var(--color-theme-primary-blue);
-} */
+}
