@@ -3,8 +3,7 @@ import { getCollection, render } from 'astro:content';
 import ProjectLayout from '@layouts/ProjectLayout.astro'
 import ProjectsNav from '@components/ProjectsNav.astro';
 import ProjectsSidebar from '@components/ProjectsSidebar.astro';
-import {slide} from 'astro:transitions'
-
+import {PROJECTS} from '@components/Projects.astro'
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -14,12 +13,47 @@ export async function getStaticPaths() {
   }));
 }
 
+
+
 const {id} = Astro.params
 const { project } = Astro.props;
 const {data} = project
 const {dataId, title, description, mockup, shortCuts} = data
 
-const buttons: string[][] = shortCuts.Resources.filter((option)=>(option[0] != 'Project details'))
+
+
+const buttons = shortCuts.Resources.filter((option)=>(option[0] != 'Project details'))
+
+const infoLinks = PROJECTS.flatMap(project => {
+  const infoOption = project.options.find(option => option.icon === 'info');
+  if (!infoOption || !infoOption.link) return [];
+  return [{ name: project.title, direction: infoOption.link, externalLink: true }];
+});
+
+const formatedSuggestions = Object.entries(shortCuts).filter(([shortcut, action])=>shortcut!='Resources').flatMap(([key, value]) => {
+  if (['Frontend','Backend','Deployment'].includes(key)) {
+    return [{ name: key, direction: key}];
+  } else {
+    return value.map(([name, direction]) => {
+      if(key==='Resources'){
+        return{
+          name:name,
+          direction:direction,
+          externalLink:true
+        }
+      }
+
+      else{
+        return{
+          name: name,
+          direction: name
+        }
+      }
+    });
+  }
+});
+
+const allSuggestions = [...formatedSuggestions, ...infoLinks];
 
 const {Content} = await render(project)
 
@@ -29,7 +63,7 @@ const {Content} = await render(project)
     <ProjectsNav shortCuts={shortCuts}/>
     <main transition:animate='slide' id="project-main" class="flex flex-col gap-6">
 
-      <div class="flex gap-4">
+      <div id="button-container" data-suggestions={JSON.stringify(allSuggestions)} class="flex gap-4">
         {buttons.map(([name, link])=>(
           
             <a href={link} target="_blank" class="project-option cursor-pointer border border-theme-primary-blue transition-all ease-in-out text-sm hover:text-white hover:bg-theme-primary-blue text-theme-primary-blue rounded-full py-1 px-3">
@@ -46,4 +80,21 @@ const {Content} = await render(project)
 
     <ProjectsSidebar currentProject={id}/>
 </ProjectLayout>
+
+<script>
+  import { useProjectStore } from "src/stores/projectPageStore"
+
+  const changeSuggestions = ()=>{
+    const buttonContainer = document.getElementById('button-container')
+    const suggestions = JSON.parse(buttonContainer?.getAttribute('data-suggestions') as string)
+    
+    const {setProjectSuggestions} = useProjectStore.getState()
+    setProjectSuggestions(suggestions)
+  }
+
+  changeSuggestions()
+
+  document.addEventListener('astro:after-swap', changeSuggestions)
+
+</script>
 
