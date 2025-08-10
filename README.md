@@ -4,7 +4,7 @@ Welcome to my professional portfolio. Here you'll find a curated selection of pr
 
 ---
 
-![portolio mockup](/images/portfolio-mockup.avif)
+![portolio mockup](https://raw.githubusercontent.com/faOC20/developer-portfolio/refs/heads/master/public/images/portfolio-mockup.avif)
 
 ---
 
