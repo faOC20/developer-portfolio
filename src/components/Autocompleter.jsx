@@ -10,11 +10,14 @@ export const Autocompleter = ()=>{
     const [suggestions, setSuggestions] = useState([])
     const searchModal = useRef()
     const searchInput = useRef()
+    const [openedOnce, setOpenedOnce] = useState(false)
 
     useEffect(()=>{
         const handleClickOutsideSearch = (event)=>{
             if (showModal && !searchModal.current.contains(event.target)){
+                setOpenedOnce(true)
                 setShowModal(false)
+                setSearch('')
             }
         }
 
@@ -26,10 +29,12 @@ export const Autocompleter = ()=>{
     },[showModal])
 
     const handleClick = ()=>{
-        if(showModal){
-            setShowModal(false)
+        if(!showModal && !openedOnce){
+            setShowModal(true) 
         }
-        else setShowModal(true)
+        else{
+            setOpenedOnce(false)
+        }
     }
 
     useEffect(()=>{
@@ -76,7 +81,7 @@ export const Autocompleter = ()=>{
                         }
                     }} ref={searchModal} className="absolute bg-theme-coal-black/90 border border-theme-gray rounded-lg left-1/2 -top-78 transition-transform -translate-x-1/2 h-auto w-md">
                 <div className="size-full flex flex-col p-2 gap-2">
-                    <input ref={searchInput} onChange={(e)=>{
+                    <input value={search} ref={searchInput} onChange={(e)=>{
                         setSearch(e.target.value)
                     }} type="search" placeholder="" className="border w-full rounded-t-lg border-theme-gray p-2"/>
                     <section className="overflow-y-auto max-h-44">

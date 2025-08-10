@@ -1,6 +1,7 @@
 ---
 import SectionIndex from '@components/SectionIndex.astro';
 import Description from './Description.astro';
+import Resume from '@icons/resume.svg'
 
 
 
@@ -15,18 +16,30 @@ import Description from './Description.astro';
                     </picture>
                 </div>
                 <div class="flex flex-col min-w-96 gap-4 font-normal">
-                    <div class="w-fit py-2 pl-2 pr-3 h-6 flex gap-2 items-center overflow-hidden bg-[#2A2A2A] rounded-full">
-                        <div class="aspect-square flex rounded-full items-center justify-center bg-theme-gray/90 h-4">
-                            <div class="bg-green-600 size-2 animate-pulse rounded-full"></div>
+                    <div class="flex justify-between">
+                        <div class="flex flex-col gap-4">
+                            <div class="w-fit py-2 pl-2 pr-3 h-6 flex gap-2 items-center overflow-hidden bg-[#2A2A2A] rounded-full">
+                                <div class="aspect-square flex rounded-full items-center justify-center bg-theme-gray/90 h-4">
+                                    <div class="bg-green-600 size-2 animate-pulse rounded-full"></div>
+                                </div>
+                                
+                                <h1 class="grow text-sm dark:text-theme-gray-light">
+                                    Availible to work
+                                </h1>
+                            </div>
+                            <h1 class="text-4xl dark:text-theme-light">
+                                Fabian Ortiz
+                            </h1>
                         </div>
                         
-                        <h1 class="grow text-sm dark:text-theme-gray-light">
-                            Availible to work
-                        </h1>
+
+                        <a  href="/[EN]Fabian-CV.pdf" download class="hover:rotate-4 transition-transform p-1 size-12 cursor-pointer rounded-xl dark:text-theme-light bg-[#2A2A2A] hover:bg-theme-gray">
+                        
+                            <Resume/>
+                            
+                        </a>
+                        
                     </div>
-                    <h1 class="text-4xl dark:text-theme-light">
-                        Fabian Ortiz
-                    </h1>
                     <div class="h-7">
                         <div class="hidden flex occupation text-lg">
                             <span class="occ-letter opacity-0">F</span>
