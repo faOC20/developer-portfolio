@@ -10,11 +10,12 @@ export const Autocompleter = ()=>{
     const [suggestions, setSuggestions] = useState([])
     const searchModal = useRef()
     const searchInput = useRef()
+    const searchIcon = useRef()
     const [openedOnce, setOpenedOnce] = useState(false)
 
     useEffect(()=>{
         const handleClickOutsideSearch = (event)=>{
-            if (showModal && !searchModal.current.contains(event.target)){
+            if (showModal && !searchModal.current.contains(event.target) && !searchIcon.current.contains(event.target)){
                 setOpenedOnce(true)
                 setShowModal(false)
                 setSearch('')
@@ -29,11 +30,11 @@ export const Autocompleter = ()=>{
     },[showModal])
 
     const handleClick = ()=>{
-        if(!showModal && !openedOnce){
+        if(!showModal){
             setShowModal(true) 
         }
         else{
-            setOpenedOnce(false)
+            setShowModal(false)
         }
     }
 
@@ -64,7 +65,7 @@ export const Autocompleter = ()=>{
                     <li>
                         <a className="cursor-pointer" href="/">Home</a>
                     </li>
-                    <button onClick={handleClick} className="size-10 text-lg cursor-pointer">
+                    <button ref={searchIcon} onClick={handleClick} className="size-10 text-lg cursor-pointer">
                         <IoIosSearch/>
                     </button>
                 </ul>

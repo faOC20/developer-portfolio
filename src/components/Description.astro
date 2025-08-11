@@ -1,52 +1,18 @@
 ---
-import OptionSelector from "@components/OptionSelector.jsx";
+import {OptionSelector} from "@components/OptionSelector.jsx";
 import { getCollection } from "astro:content";
 import {collectionSorter} from '@utils/collectionSorter'
 
 
 const descriptions = await getCollection('descriptions')
 
-//collections does'nt has any order pattern, to fix it we use the sort method
-const options = collectionSorter(descriptions)
 ---
-
-
-
-    
-        
-        <article class="flex flex-col relative w-full h-full gap-4 justify-end">
-            <!-- <SectionTitle>tech-stack</SectionTitle> -->
-            
-
-        <OptionSelector options={options} toManage={"description"}  client:load/>
+    <article class="flex flex-col relative w-full h-full gap-4 justify-end">
+           
+        <OptionSelector client:only/>
        
-        {
-            descriptions.map(async(description)=>{
-                const {data} = description
-                const {dataId, style} = data
-                const { Content } = await description.render();
+    </article>
 
-                return(
-                    <div data-id={`description-${dataId}`} class:list={`${style}`}>
-                        
-
-                        <div class="dark:text-gray-400 text-lg h-fit">
-                           <Content/> 
-                        </div>
-
-                        
-                    </div>
-                )
-            })
-        }
-
-
-        
-       </article>
-
-       <!-- <SectionNameBg style="-right-130">
-            /TECH<br/>STACK
-       </SectionNameBg> -->
 
        
    

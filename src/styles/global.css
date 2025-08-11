@@ -29,6 +29,7 @@ body {
     background-color: var(--color-theme-coal-black);
     color: var(--color-theme-light);
   }
+  
   *::-webkit-scrollbar {
     height: 10px;
     width: 10px;
