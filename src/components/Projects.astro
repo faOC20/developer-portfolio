@@ -10,7 +10,7 @@ export const PROJECTS = [
         description: 'Financed Sales & Inventory App. created using Python and PostgreSQL',
         mockup: '/images/syncro/syncro-screenshot.avif',
         teckStack: ['node.js', 'express.js', 'sqlite', 'turso DB', 'react.js'],
-        style: 'col-span-4 row-span-2',
+        style: 'xl:col-span-4 xl:row-span-2',
         video: '/videos/Syncro-Mockup-video.webm',
         options: [
             {
@@ -42,7 +42,7 @@ export const PROJECTS = [
         description: 'Created from scratch, using React and Tailwind CSS, Integrated with a backend based on Node JS and SQLite',
         mockup: '/images/sendme/sendme-home.avif',
         info: '/project/syncro',
-        style: 'col-span-2',
+        style: 'xl:col-span-2',
         teckStack: ['javascript', 'react.js', 'tailwind.css', 'node.js', 'sqlite'],
         options: [
             {
@@ -74,7 +74,7 @@ export const PROJECTS = [
         info: '/project/admin-sendme',
         description: 'Order management app, turso database implementation. created using Node JS and SQlite',
         mockup: '/images/adminSendme/admin-dashboard.avif',
-        style: 'col-span-2',
+        style: 'xl:col-span-2',
         teckStack: ['node.js', 'express.js', 'sqlite', 'turso DB', 'react.js'],
         options: [
             // {
@@ -100,9 +100,12 @@ export const PROJECTS = [
 
 
 
-<div id="projects-container" class="">
+<div id="projects-container" class="relative max-h-60 sm:max-h-80 md:max-h-96 lg:max:h-[30rem] xl:max-h-max">
     <!-- <div class="absolute inset-0 -z-10 h-full w-full  bg-theme-primary-blue bg-[linear-gradient(to_right,#3F3F3F_1px,transparent_1px),linear-gradient(to_bottom,#3F3F3F_1px,transparent_1px)] bg-[size:20rem_12rem]"></div> -->
-    <SectionIndex style="grid grid-cols-6 grid-rows-2 gap-7 py-10">
+    <div class="pointer-events-none z-20 absolute bottom-0 left-0 w-full h-30 bg-gradient-to-t xl:hidden from-theme-coal-black to-transparent"></div>
+    <SectionIndex style="grid grid-cols-1 xl:grid-cols-6 xl:grid-rows-2 auto-rows-max  gap-7 py-10 overflow-y-auto">
+        
+   
         
     {
         PROJECTS.map((project)=>(

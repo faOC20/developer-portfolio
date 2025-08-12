@@ -65,7 +65,7 @@ export const Autocompleter = ()=>{
                     <li>
                         <a className="cursor-pointer" href="/">Home</a>
                     </li>
-                    <button ref={searchIcon} onClick={handleClick} className="size-10 text-lg cursor-pointer">
+                    <button ref={searchIcon} onClick={handleClick} className="text-lg cursor-pointer">
                         <IoIosSearch/>
                     </button>
                 </ul>
@@ -80,7 +80,7 @@ export const Autocompleter = ()=>{
                         if(e.key == 'Escape'){
                            setShowModal(false)
                         }
-                    }} ref={searchModal} className="absolute bg-theme-coal-black/90 border border-theme-gray rounded-lg left-1/2 -top-78 transition-transform -translate-x-1/2 h-auto w-md">
+                    }} ref={searchModal} className="absolute bg-theme-coal-black/90 border border-theme-gray rounded-lg left-1/2 -top-78 transition-transform -translate-x-1/2 h-auto w-80 sm:w-md">
                 <div className="size-full flex flex-col p-2 gap-2">
                     <input value={search} ref={searchInput} onChange={(e)=>{
                         setSearch(e.target.value)
