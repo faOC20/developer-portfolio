@@ -30,7 +30,7 @@ shortCuts:
 ---
 
 
-<h1 class='text-5xl'> Sendme - Online sales page</h1>
+<h1 class='text-2xl 2xl:text-5xl'> Sendme - Online sales page</h1>
 
 <strong id='introduction' class='text-xl'> Introduction </strong>
 

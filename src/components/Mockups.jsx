@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
 import { CiSquareInfo } from "react-icons/ci";
@@ -10,100 +10,42 @@ const icons = {
 }
 
 
+
 export const Mockups = ({mockup})=>{
 
-    const [isHovered, setIsHovered] = useState(false) 
-    const [showInfo, setShowInfo] = useState(false)
+   
+
+    const {link} = mockup.options.find((project)=>project.icon === 'info')
+   
+    const [isActive, setIsActive] = useState(false)
+
+    const handleMouseEnter = (e)=>{
+      
+        setIsActive(true)
+    }
+
+    const handleMouseLeave = (e)=>{
+        
+        setIsActive(false) 
+    }
 
     return (
-        <div key={`${mockup.dataId}-${mockup.name}`}className={`project ${mockup.style} overflow-hidden relative rounded-xl`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+        <a onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} href={link} key={`${mockup.dataId}-${mockup.name}`}className={`project ${mockup.style}  relative rounded-xl shadow-[0_0_3px_-0.5px_rgba(255,255,255,0.1)] border border-white/10 overflow-hidden flex justify-center items-center`}
         >
-                               
-            {
-                isHovered && mockup.video?(
+            <div className={`absolute size-full transition-opacity duration-700 bg-[linear-gradient(to_top,rgba(0,163,255,0.3)_0%,rgba(0,163,255,0)_30%)]  ${isActive?'opacity-100':'opacity-0'}`}>
+                
+            </div>
+
+            <div className="w-[83%] h-10/12">
+                <img 
                     
-                        <div className="w-full h-full flex flex-col justify-center items-center bg-gradient-to-r from-[#478FC4] to-[#121212] to-[80%] gap-5">
-                            <div className="flex gap-4 w-full px-8 justify-end">
-                                {
-                                    mockup.options.map(({icon, link})=>{
-                                        const Icon = icons[icon]
-
-                                        if(icon === 'info'){
-                                            console.log()
-                                            return(
-                                                <a href={link}  key={`button-${mockup.dataId}-${icon}`} className="text-white p-1.5 hover:bg-theme-dark-blue hover:rotate-12 transition-transform bg-theme-primary-blue rounded-lg cursor-pointer">
-                                                    <Icon size={25}/>
-                                                </a>  
-                                            ) 
-                                        }
-                                        else{
-                                            return(
-                                                <a href={link} target="__blank" key={`button-${mockup.dataId}-${icon}`} className="text-white p-1.5 hover:bg-theme-dark-blue hover:rotate-12 transition-transform bg-theme-primary-blue rounded-lg cursor-pointer">
-                                                    <Icon size={25}/>
-                                                </a>  
-                                            ) 
-                                        }
-                                    })
-                                }
-                            </div>
-                            <div className="aspect-video h-80 flex justify-center items-center">
-                                <video src={mockup.video} className="rounded-xl border-5 border-white/10" autoPlay></video>
-                            </div>
-                        </div>
-                   
-                ):(
-
-                    <div 
-                        className="size-full relative"
-                        onMouseEnter={()=>{setShowInfo(true)}}
-                        onMouseLeave={()=>{setShowInfo(false)}}
-                    >
-
-                       
-                       <img 
-                            className="relative  rounded-xl z-10 object-cover size-full animate-fade" 
-                            src={mockup.mockup} 
-                            alt={`Screenshot of ${mockup.title}, a project created by Fabian Ortiz.`}>
-                        </img>  
-
-                        {
-                            !mockup.video && showInfo && mockup.options?(
-                                <div className="absolute z-20 left-0 top-0 size-full bg-black/60">
-                                    <div className="flex size-full gap-4 justify-center items-center">
-                                    {
-                                        mockup.options.map(({icon, link})=>{
-                                            const Icon = icons[icon]
-                                            if(icon === 'info'){
-                                                console.log()
-                                                return(
-                                                    <a href={link}  key={`button-${mockup.dataId}-${icon}`} className="text-white p-1.5 hover:bg-theme-dark-blue hover:rotate-12 transition-transform bg-theme-primary-blue rounded-lg cursor-pointer">
-                                                        <Icon size={25}/>
-                                                    </a>  
-                                                ) 
-                                            }
-                                            else{
-                                                return(
-                                                    <a href={link} target="__blank" key={`button-${mockup.dataId}-${icon}`} className="text-white p-1.5 hover:bg-theme-dark-blue hover:rotate-12 transition-transform bg-theme-primary-blue rounded-lg cursor-pointer">
-                                                        <Icon size={25}/>
-                                                    </a>  
-                                                ) 
-                                            }
-                                        })
-                                    }
-                                    </div>
-                                </div>
-                            ):
-                            (
-                                ''
-                            )
-                        }
-                        
-                    </div>
-                )
-            }            
-                                
-        </div>
+                    className={`relative outline-4 outline-theme-primary-blue/30 rounded-lg transition-transform duration-700 z-10 size-full object-cover ${isActive?'-translate-y-1 scale-101':''}`} 
+                    src={mockup.mockup} 
+                    alt={`Screenshot of ${mockup.title}, a project created by Fabian Ortiz.`}>
+                </img> 
+            </div>
+            
+                         
+        </a>
     )
 }

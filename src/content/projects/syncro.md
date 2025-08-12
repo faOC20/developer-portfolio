@@ -30,7 +30,7 @@ shortCuts:
 ---
 
 
-<h1 class='text-5xl'>
+<h1 class='text-2xl 2xl:text-5xl'>
     Syncro - Inventory App
 </h1>
 

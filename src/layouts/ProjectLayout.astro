@@ -18,10 +18,12 @@ import { ClientRouter} from 'astro:transitions'
 	</head>
 
 	
-	<body class="overflow-x-hidden">
-		<div class="absolute top-0 z-[-2] h-[300vh] w-screen bg-theme-coal-black bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
+	<body class="relative">
+		<div class="absolute size-full overflow-x-hidden">
+			<div class="absolute top-0 z-[-2] h-[300vh] w-screen bg-theme-coal-black bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
 		<div class="absolute w-full h-full bg-[url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')] bg-repeat bg-[length:128px] opacity-6 rounded-none"></div>
+		</div>
 		<Header/>
 		<slot />
 		<!-- <Footer/> -->
@@ -44,6 +46,8 @@ import { ClientRouter} from 'astro:transitions'
 		grid-template-columns: 15rem 1fr 14rem;
 		grid-template-rows: auto 1fr 10rem;
     }
+
+	
 
 	#header{
 		grid-area: header;
@@ -68,6 +72,69 @@ import { ClientRouter} from 'astro:transitions'
 
 	#sidebar{
 		grid-area: sidebar;	
+	}
+
+	@media (width <= 104rem) {
+		body{
+			padding-left: 4rem;
+			padding-right: 4rem;
+		}
+
+		#project-main{
+			padding-left: 4rem;
+			padding-right: 4rem;
+		}
+	}
+
+	@media (width <= 56rem) {
+		body{
+			padding-left: 2rem;
+			padding-right: 2rem;
+			grid-template-columns: 10rem 1fr 8rem;
+		}
+
+		#project-main{
+			padding-left: 2rem;
+			padding-right: 2rem;
+		}
+	}
+
+	@media (width <= 40rem) {
+		body{
+		min-height: 100vh;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		padding-bottom: 5rem;
+		display: grid;
+		grid-template-areas: 
+		"header"
+		"main"
+		"footer"
+		;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(1fr, 3);
+    }
+
+		#project-main{
+			padding-left: 2rem;
+			padding-right: 2rem;
+		}
+
+		#project-nav{
+			display: none;
+		
+		
+	}
+
+		#sidebar{
+			display: none;
+		}
+
+		#header{
+		grid-area: header;
+		margin-bottom: 3rem;
+		}
+
 	}
 
 </style>

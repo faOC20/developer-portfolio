@@ -24,7 +24,7 @@ shortCuts:
 ---
 
 
-<h1 class='text-5xl'>Admin Sendme – Orders Management</h1>
+<h1 class='text-2xl 2xl:text-5xl'>Admin Sendme – Orders Management</h1>
 
 <strong id='introduction' class='text-xl'>Introduction</strong>
 

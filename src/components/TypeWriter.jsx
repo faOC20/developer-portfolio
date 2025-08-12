@@ -41,7 +41,7 @@ export const TypeWriter = () => {
   }, [index])
 
   return (
-    <div className="h-7 text-lg flex items-center">
+    <div className="h-7 text-xs sm:text-lg 2xl:text-lg flex items-center">
       <span>{words[index].substring(0, subIndex)}</span>
       <span className="ml-1 inline-block align-baseline caret" aria-hidden="true"></span>
       <style>{`
