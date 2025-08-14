@@ -30,7 +30,7 @@ export const Mockups = ({mockup})=>{
     }
 
     return (
-        <a onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} href={link} key={`${mockup.dataId}-${mockup.name}`}className={`project ${mockup.style}  relative rounded-xl shadow-[0_0_3px_-0.5px_rgba(255,255,255,0.1)] border border-white/10 overflow-hidden flex justify-center items-center`}
+        <a onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} href={link} key={`${mockup.dataId}-${mockup.name}`}className={`project ${mockup.style}  relative rounded-xl shadow-[0_0_3px_-0.5px_rgba(255,255,255,0.1)] border border-theme-coal-black/20 dark:border dark:border-white/10 overflow-hidden flex justify-center items-center`}
         >
             <div className={`absolute size-full transition-opacity duration-700 bg-[linear-gradient(to_top,rgba(0,163,255,0.3)_0%,rgba(0,163,255,0)_30%)]  ${isActive?'opacity-100':'opacity-0'}`}>
                 

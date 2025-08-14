@@ -50,7 +50,7 @@ export const OptionSelector = ()=>{
             }
             </div>
 
-            <div className="prose text-gray-400">
+            <div className="prose text-theme-gray dark:text-gray-400">
                 {OPTIONS[selected].content}
             </div>
             

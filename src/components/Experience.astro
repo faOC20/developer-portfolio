@@ -21,14 +21,14 @@ const EXPERIENCES = [
 ---
 <div id="experience">
     <SectionIndex style="py-0 pt-10">
-        <div class="pointer-events-none z-20 absolute bottom-0 left-0 w-full h-30 bg-gradient-to-t from-theme-coal-black to-transparent"></div>
-        <ol class="relative h-full overflow-y-auto border-s border-gray-200 dark:border-gray-700">                  
+        <div class="pointer-events-none z-20 absolute bottom-0 left-0 w-full h-30 bg-gradient-to-t from-theme-coal-black/60 dark:from-theme-coal-black to-transparent"></div>
+        <ol class="relative h-full overflow-y-auto border-s border-theme-light dark:border-gray-700">                  
             {
-                EXPERIENCES.map(({date, info, subtitle, learn})=>(
+                EXPERIENCES.map(({date, info, subtitle, learn})=>( 
                     <li class="mb-10 ms-4 px-5 relative">
-                        <div class="absolute size-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-theme-dark-blue dark:bg-theme-primary-blue"></div>
+                        <div class="absolute size-3 bg-theme-light rounded-full mt-1.5 -start-1.5 border border-theme-gray-light dark:border-theme-dark-blue dark:bg-theme-primary-blue"></div>
                         
-                        <time class="mb-1 text-xs font-normal leading-none text-gray-400 dark:text-[#9aa1b5]">{date}</time>
+                        <time class="mb-1 text-xs font-normal leading-none text-theme-gray-medium dark:text-[#9aa1b5] ">{date}</time>
                     
                         <h3 class="text-md font-semibold text-gray-900 dark:text-white">{subtitle}</h3>
                     

@@ -34,10 +34,10 @@ const SOCIALS = [
             {
                 SOCIALS.map((option) => (
                     <a target="_blank" href={option.link} class="w-full flex gap-2 bg-theme-coal-black/20 border-white/10 shadow-[0_0_3px_-0.5px_rgba(255,255,255,0.1)] hover:bg-theme-coal-black/50 hover:rotate-4  transition-all rounded-2xl">
-                        <picture class="flex size-12 p-2 bg-theme-gray/50 m-2 rounded-xl text-theme-primary-blue dark:text-theme-light">
+                        <picture class="flex size-12 p-2 not-dark:bg-theme-gray/30 bg-theme-gray/50 m-2 rounded-xl text-theme-gray  dark:text-theme-light">
                             <option.icon/>
                         </picture>
-                        <span class="flex size-full items-center text-theme-light">
+                        <span class="flex size-full items-center text-theme-gray dark:text-theme-light">
                             {option.user}
                         </span>
                     </a>
@@ -45,10 +45,10 @@ const SOCIALS = [
             }
 
             <button id="email-button" class="w-full flex gap-2 border-white/10 shadow-[0_0_3px_-0.5px_rgba(255,255,255,0.1)] bg-theme-coal-black/20 hover:bg-theme-coal-black/50  hover:rotate-4 cursor-pointer  transition-all rounded-2xl">
-                <picture class="flex size-12 p-2 bg-theme-gray/50 m-2 rounded-xl text-theme-primary-blue dark:text-theme-light">
+                <picture class="flex size-12 p-2 bg-theme-gray/50 m-2 rounded-xl not-dark:bg-theme-gray/30 text-theme-gray  dark:text-theme-light">
                     <Mail/>
                 </picture>
-                <span class="flex size-full items-center text-theme-light">
+                <span class="flex size-full items-center text-theme-gray dark:text-theme-light">
                     fabianortiz.dev
                 </span>
             </button>

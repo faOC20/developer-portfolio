@@ -9,6 +9,7 @@
     --color-theme-light: #CCCCCC;
     --color-theme-gray-medium: #4e4e4e;
     --color-theme-coal-black: #080808;
+    --color-theme-sand: #faf3e9
 }
 
 @font-face {
@@ -20,7 +21,7 @@
 
 body {
   font-family: 'Onest', sans-serif;
-  background-color: #f5f5f5;
+  background-color: #faf3e9;
   position: relative;
   min-height: 100vh;
 }
@@ -60,4 +61,34 @@ body {
   *::-webkit-scrollbar-thumb:active {
     background-color: #979797;
   }
+}
+
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #FAF3E9;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #FAF3E9;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #FAF3E9;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #C5BFB7;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #C5BFB7;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #C5BFB7;
 }

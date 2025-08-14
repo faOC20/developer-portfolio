@@ -80,7 +80,7 @@ export const Autocompleter = ()=>{
                         if(e.key == 'Escape'){
                            setShowModal(false)
                         }
-                    }} ref={searchModal} className="absolute bg-theme-coal-black/90 border border-theme-gray rounded-lg left-1/2 -top-78 transition-transform -translate-x-1/2 h-auto w-80 sm:w-md">
+                    }} ref={searchModal} className="absolute bg-theme-sand/90 dark:bg-theme-coal-black/90 border border-theme-gray rounded-lg left-1/2 -top-78 transition-transform -translate-x-1/2 h-auto w-80 sm:w-md">
                 <div className="size-full flex flex-col p-2 gap-2">
                     <input value={search} ref={searchInput} onChange={(e)=>{
                         setSearch(e.target.value)
